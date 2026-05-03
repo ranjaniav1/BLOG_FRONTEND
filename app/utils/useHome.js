@@ -13,7 +13,7 @@ export const HomeProvider = ({ children }) => {
         const fetchHome = async () => {
             try {
                 const response = await getHome();
-                console.log(response,"home")
+                
                 setHomeData(response);
             } catch (error) {
                 console.error("Error fetching home data:", error);

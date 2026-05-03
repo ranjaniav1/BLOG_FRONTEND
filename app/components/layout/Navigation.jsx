@@ -34,6 +34,7 @@ const Navigation = () => {
   const tabs = [
     { name: "Home", link: "/" },
     { name: "Tutorials", link: "/categories/frontend-development" },
+    { name: "Python Series", link: "/series/python-for-begginers", isNew: true },
     { name: "Backend", link: "/categories/backend-development" },
     { name: "AI & ML", link: "/categories/artificial-intelligence" },
     { name: "DevOps", link: "/categories/devops-tools" }
@@ -74,7 +75,7 @@ const Navigation = () => {
           <Loading />
         </div>
       )}
-      <div className="flex justify-between items-center py-4">
+      <div className="flex justify-between items-center py-4" >
         {/* Logo */}
         <img
           src={settings?.headerLogo}
@@ -128,6 +129,19 @@ const Navigation = () => {
               }}
             >
               {tab.name}
+              {tab.isNew && (
+                <span className="text-md mx-2 px-2"
+                  style={{
+                    background: themeData?.background?.button,
+                    border: `1px solid ${themeData?.text?.secondary}`,
+                    borderRadius: config?.borderRadius,
+                    color: themeData?.text?.button,
+
+                  }}
+                >
+                  New
+                </span>
+              )}
             </NavLink>
           ))}
         </Box>

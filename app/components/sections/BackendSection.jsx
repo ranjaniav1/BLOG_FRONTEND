@@ -11,12 +11,11 @@ const BackendSection = () => {
   const { homeData: news, loading } = useHomeContext();
 
 
-  if (loading || !news.travelNews) {
+  if (loading || !news.ai) {
     return <TravelSkeleton />;
   }
 
-  const articles = news.travelNews;
-  console.log("travel", articles);
+  const articles = news.ai;
 
   return (
     <Container maxWidth="xl">

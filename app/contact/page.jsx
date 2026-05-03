@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { sendContactMessage } from "../service/contact";
+import { sendContactMessage } from "../service/home";
 import { useThemeContext } from "../context/ThemeContext";
 
 export default function ContactPage() {

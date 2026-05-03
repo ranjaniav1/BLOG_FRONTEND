@@ -10,11 +10,11 @@ import { useHomeContext } from "@/app/utils/useHome";
 const LatestArticles = () => {
   const { homeData: news, loading } = useHomeContext();
 
-  if (loading || !news.recentNews) {
+  if (loading || !news.frontend) {
     return <RecentSkeleton />;
   }
 
-  const articles = news.recentNews;
+  const articles = news.frontend;
 
   return (
     <Container maxWidth="xl">

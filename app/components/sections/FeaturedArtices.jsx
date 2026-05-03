@@ -12,11 +12,11 @@ const FeaturedArticles = () => {
   const { homeData: news, loading } = useHomeContext();
 
 
-  if (loading || !news.breakingNews) {
+  if (loading || !news.mobile) {
     return <TechnologySkeleton />;
   }
 
-  const articles = news.breakingNews;
+  const articles = news.mobile;
 
   if (articles.length === 0) {
     return <h2>Article not found...</h2>;
