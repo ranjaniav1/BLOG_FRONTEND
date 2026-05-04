@@ -75,3 +75,9 @@ export const getLessonsBySeries = (seriesId) =>
     axiosInstance: httpAxiosForHome,
     url: `/lesson/series/${seriesId}`,
   }).then((res) => res.data.lessons);
+
+  export const getLessonBySlug = ( {seriesSlug, lessonSlug} ) =>
+  apiRequest({
+    axiosInstance: httpAxiosForHome,
+    url: `/lesson/${seriesSlug}/${lessonSlug}`,
+  }).then((res) => res.data.lesson);

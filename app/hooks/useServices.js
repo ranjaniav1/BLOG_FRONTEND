@@ -1,6 +1,7 @@
+import { useCallback, useMemo } from "react";
 import { getArticleBasedonCategory } from "../service/collectionOfArticle";
 import { createComments, getComments } from "../service/comments";
-import { getAllSeries, getHome, getLessonsBySeries } from "../service/home";
+import { getAllSeries, getHome, getLessonBySlug, getLessonsBySeries } from "../service/home";
 import { getSearch } from "../service/search";
 import { getSettings } from "../service/settings";
 import { getSingleArticle } from "../service/singleArticle";
@@ -76,10 +77,29 @@ export const useSeries = () =>
         transform: (res) => res || [],
     });
 
-export const useLessons = (seriesId) =>
-    useFetch({
+export const useLessons = (seriesId) => {
+    // Only create memo when seriesId actually changes
+    const memoizedSeriesId = useMemo(() => seriesId, [seriesId]);
+    
+    return useFetch({
         fetchFn: getLessonsBySeries,
-        params: seriesId,
+        params: memoizedSeriesId,
         enabled: !!seriesId,
-        transform: (res) => res || [],
+        transform: (res) => res || [], 
     });
+};
+
+export const useLessonContent = (seriesSlug, lessonSlug) => {
+    // Memoize both params together
+    const memoizedParams = useMemo(
+        () => ({ seriesSlug, lessonSlug }),
+        [seriesSlug, lessonSlug]
+    );
+    
+    return useFetch({
+        fetchFn: getLessonBySlug,
+        params: memoizedParams,
+        enabled: !!seriesSlug && !!lessonSlug,
+        transform: (res) => res || null, 
+    });
+};

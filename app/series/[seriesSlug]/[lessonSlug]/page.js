@@ -1,44 +1,69 @@
+"use client";
+
 import { Box, Typography, Container, Button } from "@mui/material";
 import SeriesSidebar from "@/app/components/seriesSidebar";
-import { pythonBasics } from "@/app/data/seriesData";
+import { useParams } from "next/navigation";
+import {
+  useLessonContent,
+  useLessons,
+  useSeries,
+} from "@/app/hooks/useServices";
 
-export default function LessonPage({ params }) {
-  const { seriesSlug, lessonSlug } = params;
+export default function LessonPage() {
+  const { seriesSlug, lessonSlug } = useParams();
 
-  // 👉 Use dummy data
-  const series = pythonBasics;
+  // 🔥 Get all series
+  const { data: seriesList = [], loading: seriesLoading } =
+    useSeries();
 
-  const lesson = series.find(l => l.slug === lessonSlug);
+  const currentSeries = seriesList.find(
+    (s) => s.slug === seriesSlug
+  );
 
-  const sorted = [...series].sort((a, b) => a.order - b.order);
-  const currentIndex = sorted.findIndex(l => l.slug === lessonSlug);
+  const seriesId = currentSeries?._id;
+
+  // 🔥 Sidebar lessons
+  const { data: lessons = [], loading: lessonsLoading } =
+    useLessons(seriesId);
+
+  // 🔥 Single lesson content
+  const { data: lesson=null, loading: lessonLoading } =
+    useLessonContent(seriesSlug, lessonSlug);
+
+  if (seriesLoading || lessonsLoading || lessonLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!lesson) return <div>Lesson not found</div>;
+
+  // 🔥 sort for sidebar + navigation
+  const sorted = [...lessons].sort((a, b) => a.day - b.day);
+
+  const currentIndex = sorted.findIndex(
+    (l) => l.slug === lessonSlug
+  );
 
   const prev = sorted[currentIndex - 1];
   const next = sorted[currentIndex + 1];
 
-  if (!lesson) {
-    return <div>Lesson not found</div>;
-  }
-
   return (
     <Box sx={{ display: "flex" }}>
+      {/* ✅ Sidebar */}
+      <SeriesSidebar
+        lessons={sorted}
+        title={currentSeries?.title}
+      />
 
-      {/* Sidebar */}
-      <SeriesSidebar />
-
-      {/* Main Content */}
+      {/* ✅ MAIN CONTENT */}
       <Container maxWidth="md" sx={{ py: 6 }}>
-
         <Typography variant="h4" fontWeight="bold">
           {lesson.title}
         </Typography>
 
-        <Typography color="text.secondary" sx={{ mb: 3 }}>
-          Day {lesson.day} • Python Basics
-        </Typography>
-
         <Box
-          dangerouslySetInnerHTML={{ __html: lesson.content }}
+          dangerouslySetInnerHTML={{
+            __html: lesson.content,
+          }}
           sx={{
             lineHeight: 1.8,
             "& p": { mb: 2 },
@@ -48,22 +73,29 @@ export default function LessonPage({ params }) {
               color: "#fff",
               p: 2,
               borderRadius: 2,
-              overflowX: "auto"
-            }
+              overflowX: "auto",
+            },
           }}
         />
 
-        {/* Navigation */}
-        <Box sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          mt: 6
-        }}>
+        {/* NAVIGATION */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            mt: 6,
+          }}
+        >
           {prev ? (
-            <Button href={`/series/${seriesSlug}/${prev.slug}`} variant="outlined">
+            <Button
+              href={`/series/${seriesSlug}/${prev.slug}`}
+              variant="outlined"
+            >
               ← {prev.title}
             </Button>
-          ) : <div />}
+          ) : (
+            <div />
+          )}
 
           {next && (
             <Button
@@ -75,7 +107,6 @@ export default function LessonPage({ params }) {
             </Button>
           )}
         </Box>
-
       </Container>
     </Box>
   );
