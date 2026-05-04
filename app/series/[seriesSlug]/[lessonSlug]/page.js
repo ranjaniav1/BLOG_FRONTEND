@@ -38,147 +38,158 @@ export default function LessonPage() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 6 }}>
-      <Box
-        dangerouslySetInnerHTML={{ __html: lesson.content }}
-        sx={{
-          lineHeight: 1.8,
-          color: themeData.text.primary,
+     <Box
+  dangerouslySetInnerHTML={{
+    __html: lesson.content
+      ?.replace(/<p>(&nbsp;|\s)*<\/p>/g, "") // remove empty paragraphs
+      ?.replace(/<p>\s*<\/p>/g, "")
+  }}
+  sx={{
+    maxWidth: "900px",
+    mx: "auto",
+    lineHeight: 1.8,
 
-          // Headings
-          "& h1, & h2, & h3, & h4, & h5, & h6": {
-            mt: 4,
-            mb: 2,
-            fontWeight: 600,
-            color: themeData.text.heading,
-          },
+    // Headings
+    "& h1, & h2, & h3, & h4, & h5, & h6": {
+      mt: 4,
+      mb: 2,
+      fontWeight: 600,
+      color: themeData.text.heading,
+      lineHeight: 1.3,
+    },
 
-          "& h1": { fontSize: "2.5rem" },
-          "& h2": { fontSize: "2rem", borderBottom: "1px solid", borderColor: "divider", pb: 1 },
-          "& h3": { fontSize: "1.75rem" },
-          "& h4": { fontSize: "1.5rem" },
+    "& h1": { fontSize: "2.5rem" },
+    "& h2": {
+      fontSize: "2rem",
+      borderBottom: "1px solid",
+      borderColor: "divider",
+      pb: 1,
+    },
+    "& h3": { fontSize: "1.6rem" },
+    "& h4": { fontSize: "1.3rem" },
 
-          // Paragraphs
-          "& p": {
-            mb: 2,
-            color: themeData.text.heading,
-          },
+    // Paragraphs
+    "& p": {
+      mb: 2,
+      color: themeData.text.secondary,
+      fontSize: "1rem",
+    },
 
-          // Unordered Lists (bullet points)
-          "& ul": {
-            mb: 2,
-            pl: 4,
-            listStyleType: "disc",
-            "& ul": {
-              listStyleType: "circle",
-              "& ul": {
-                listStyleType: "square",
-              }
-            }
-          },
+    // Strong (important fix)
+    "& strong": {
+      fontWeight: 600,
+      color: themeData.text.heading,
+    },
 
-          "& li": {
-            mb: 1,
-            color: themeData.text.primary,
-            "&::marker": {
-              color: themeData.text.primary,
-            }
-          },
+    // Lists
+    "& ul, & ol": {
+      mb: 2,
+      pl: 4,
+    },
 
-          // Ordered Lists (numbered)
-          "& ol": {
-            mb: 2,
-            pl: 4,
-            listStyleType: "decimal",
-            "& ol": {
-              listStyleType: "lower-alpha",
-              "& ol": {
-                listStyleType: "lower-roman",
-              }
-            }
-          },
+    "& ul": {
+      listStyleType: "disc",
+    },
 
-          // Nested lists spacing
-          "& li > ul, & li > ol": {
-            mt: 1,
-            mb: 1,
-          },
+    "& ul ul": { listStyleType: "circle" },
+    "& ul ul ul": { listStyleType: "square" },
 
-          // Code blocks
-          "& pre": {
-            bgcolor: "#1e1e1e",
-            color: "#d4d4d4",
-            p: 2,
-            borderRadius: 2,
-            overflowX: "auto",
-            mb: 2,
-            fontFamily: "Consolas, Monaco, 'Courier New', monospace",
-            fontSize: "0.875rem",
-          },
+    "& ol": {
+      listStyleType: "decimal",
+    },
 
-          "& code": {
-            bgcolor: "action.hover",
-            px: 0.5,
-            py: 0.2,
-            borderRadius: 1,
-            fontFamily: "Consolas, Monaco, 'Courier New', monospace",
-            fontSize: "0.875rem",
-          },
+    "& ol ol": { listStyleType: "lower-alpha" },
+    "& ol ol ol": { listStyleType: "lower-roman" },
 
-          // Blockquotes
-          "& blockquote": {
-            borderLeft: "4px solid",
-            borderColor: "primary.main",
-            bgcolor: "action.hover",
-            py: 1,
-            px: 2,
-            my: 2,
-            fontStyle: "italic",
-            color: themeData.text.secondary,
-          },
+    "& li": {
+      mb: 0.8,
+      color: themeData.text.secondary,
+    },
 
-          // Tables
-          "& table": {
-            width: "100%",
-            mb: 2,
-            borderCollapse: "collapse",
-          },
+    // Nested spacing fix
+    "& li > ul, & li > ol": {
+      mt: 1,
+      mb: 1,
+    },
 
-          "& th, & td": {
-            border: "1px solid",
-            borderColor: "divider",
-            p: 1,
-            textAlign: "left",
-          },
+    // Code blocks
+    "& pre": {
+      bgcolor: "#1e1e1e",
+      color: "#d4d4d4",
+      p: 2,
+      borderRadius: 2,
+      overflowX: "auto",
+      mb: 2,
+      fontFamily: "Consolas, Monaco, monospace",
+      fontSize: "0.85rem",
+    },
 
-          "& th": {
-            bgcolor: "action.hover",
-            fontWeight: "bold",
-          },
+    "& code": {
+      bgcolor: "action.hover",
+      px: 0.6,
+      py: 0.3,
+      borderRadius: 1,
+      fontFamily: "Consolas, Monaco, monospace",
+      fontSize: "0.85rem",
+    },
 
-          // Horizontal rule
-          "& hr": {
-            my: 4,
-            borderColor: "divider",
-          },
+    // Blockquotes
+    "& blockquote": {
+      borderLeft: "4px solid",
+      borderColor: "primary.main",
+      bgcolor: "action.hover",
+      py: 1,
+      px: 2,
+      my: 2,
+      fontStyle: "italic",
+      color: themeData.text.secondary,
+    },
 
-          // Images
-          "& img": {
-            maxWidth: "100%",
-            height: "auto",
-            borderRadius: 1,
-            my: 2,
-          },
+    // Tables
+    "& table": {
+      width: "100%",
+      mb: 2,
+      borderCollapse: "collapse",
+    },
 
-          // Links
-          "& a": {
-            color: themeData.text.primary,
-            textDecoration: "none",
-            "&:hover": {
-              textDecoration: "underline",
-            },
-          },
-        }}
-      />
+    "& th, & td": {
+      border: "1px solid",
+      borderColor: "divider",
+      p: 1,
+      textAlign: "left",
+    },
+
+    "& th": {
+      bgcolor: "action.hover",
+      fontWeight: "bold",
+    },
+
+    // Horizontal rule
+    "& hr": {
+      my: 4,
+      borderColor: "divider",
+    },
+
+    // Images
+    "& img": {
+      maxWidth: "100%",
+      height: "auto",
+      borderRadius: 2,
+      my: 2,
+      display: "block",
+    },
+
+    // Links
+    "& a": {
+      color: themeData.text.primary,
+      textDecoration: "none",
+      fontWeight: 500,
+      "&:hover": {
+        textDecoration: "underline",
+      },
+    },
+  }}
+/>
 
       {/* Navigation Buttons */}
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 6 }}>

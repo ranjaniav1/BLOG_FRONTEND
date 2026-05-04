@@ -110,25 +110,11 @@ export default function HeroSection() {
                     },
                   }}
                 >
-                  Start Learning – Day {lessons[0].day}
+                Explore All Lessons
                 </Button>
               </Link>
             )}
 
-            <Link href={`/series/${pythonSeries?.slug}`}>
-              <Button
-                variant="outlined"
-                sx={{
-                  borderColor: "#E5E7EB",
-                  color: themeData.text.primary,
-                  px: 3,
-                  textTransform: "none",
-                  fontWeight: 600,
-                }}
-              >
-                Explore All Lessons
-              </Button>
-            </Link>
           </Box>
 
           {/* ================= STATS ================= */}
