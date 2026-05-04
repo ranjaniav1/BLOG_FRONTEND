@@ -11,6 +11,7 @@ import LatestArticles from "./components/sections/LatestArticles";
 import DevTech from "./components/sections/DevTech";
 import BackendSection from "./components/sections/BackendSection";
 import FeaturedArticles from "./components/sections/FeaturedArtices";
+import HeroSection from "./components/sections/HeroSection";
 
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
 
 
       <div className="hidden md:block">
+        <HeroSection/>
         <Heading
           title={"Trending Tutorials"}
           subtitle="Most popular guides developers are learning right now"
@@ -56,10 +58,10 @@ export default function Home() {
       />
       <LazyComponent component={DevTech} />
       <Heading
-        title={"Backend & APIs"}
-        subtitle="Learn server-side development, APIs, and databases"
+        title={"AI & ML"}
+        subtitle="Learn Artificial Intelligent and Machine Learning"
         buttonText="Explore Backend"
-        link="/categories/backend"
+        link="/categories/artificial-intelligence"
       />
       <LazyComponent component={BackendSection} />
 
