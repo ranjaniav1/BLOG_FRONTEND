@@ -33,7 +33,7 @@ export default function Home() {
 
 
       <div className="hidden md:block">
-        <HeroSection/>
+        <HeroSection />
         <Heading
           title={"Trending Tutorials"}
           subtitle="Most popular guides developers are learning right now"

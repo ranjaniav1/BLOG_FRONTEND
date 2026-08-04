@@ -23,6 +23,7 @@ import LoginDialog from "@/app/Models/Login";
 
 import { logoutUser } from "@/app/utils/auth";
 import { useAuth } from "@/app/context/AuthContext";
+import { tabs } from "@/app/data/seriesData";
 
 const NavigationDrawer = ({
   activeTab,
@@ -70,14 +71,7 @@ const NavigationDrawer = ({
         </ListItem>
 
         {/* Navigation Links */}
-        {[
-          { name: "Home", link: "/" },
-          { name: "Tutorials", link: "/categories/frontend-development" },
-          { name: "Backend", link: "/categories/backend-development" },
-          { name: "AI & ML", link: "/categories/artificial-intelligence" },
-          { name: "DevOps", link: "/categories/devops-tools" }
-
-        ].map(({ name, href }) => (
+        {tabs.map(({ name, href }) => (
           <ListItem key={name} className="px-2">
             <NavLink
               href={href}
@@ -91,7 +85,7 @@ const NavigationDrawer = ({
                 : ""
                 }`}
             >
-              {name}
+              {label}
             </NavLink>
           </ListItem>
         ))}

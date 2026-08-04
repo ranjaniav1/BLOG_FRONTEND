@@ -42,3 +42,12 @@ export const pythonBasics = [
     `,
   },
 ];
+
+export const tabs = [
+  { href: "/articles", label: "Articles" },
+  { href: "/categories", label: "Categories" },
+  { href: "/archive", label: "Archive" },
+  { href: "/about", label: "About" },
+  { href: "/newsletter", label: "Letters" },
+  { href: "/contact", label: "Contact" },
+]

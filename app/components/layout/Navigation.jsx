@@ -19,6 +19,7 @@ import SearchDialog from "../features/SearchDialog";
 import { useThemeContext } from "@/app/context/ThemeContext";
 import { useAuth } from "@/app/context/AuthContext";
 import Loading from "@/app/layout/loading";
+import { tabs } from "@/app/data/seriesData";
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -31,14 +32,7 @@ const Navigation = () => {
   const router = useRouter();
   const { themeData, config, settings } = useThemeContext();
 
-  const tabs = [
-    { name: "Home", link: "/" },
-    { name: "Tutorials", link: "/categories/frontend-development" },
-    { name: "Python Series", link: "/series/python-for-begginers", isNew: true },
-    { name: "Backend", link: "/categories/backend-development" },
-    { name: "AI & ML", link: "/categories/artificial-intelligence" },
-    { name: "DevOps", link: "/categories/devops-tools" }
-  ];
+
 
   const handleSearchOpen = () => {
     setIsDialogOpen(true);
@@ -99,7 +93,7 @@ const Navigation = () => {
         </div>
 
         {/* Drawer for Mobile */}
-        <Drawer
+        {/* <Drawer
           anchor="right"
           open={isDrawerOpen}
           onClose={toggleDrawer(false)}
@@ -109,26 +103,26 @@ const Navigation = () => {
             setActiveTab={setActiveTab}
             handleSearchOpen={handleSearchOpen}
           />
-        </Drawer>
+        </Drawer> */}
 
         {/* Navigation Links */}
         <Box className="hidden md:flex gap-8 items-center">
           {tabs.map((tab) => (
             <NavLink
-              key={tab.link}
-              href={tab.link}
-              isActive={activeTab === tab.link}
-              onClick={() => setActiveTab(tab.link)}
+              key={tab.href}
+              href={tab.href}
+              isActive={activeTab === tab.href}
+              onClick={() => setActiveTab(tab.href)}
               className="text-lg transition-colors duration-300"
               style={{
                 color:
-                  activeTab === tab.link
+                  activeTab === tab.href
                     ? themeData?.background?.button // Ensure visibility
                     : themeData?.text?.primary, // Fallback to readable color
-                fontWeight: activeTab === tab.link ? "bold" : "normal",
+                fontWeight: activeTab === tab.href ? "bold" : "normal",
               }}
             >
-              {tab.name}
+              {tab.label}
               {tab.isNew && (
                 <span className="text-md mx-2 px-2"
                   style={{
@@ -165,7 +159,7 @@ const Navigation = () => {
             </Link>
           ) : (
             <NavLink
-              to="/"
+              href="/"
               isActive={activeTab === "Login"}
               onClick={() => {
                 setActiveTab("Login");

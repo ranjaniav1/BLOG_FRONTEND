@@ -47,12 +47,12 @@ const Header = () => {
                     isActive={pathname === categoryPath}
                     onClick={() => handleClick(category.slug)}
                     className={` font-bold cursor-pointer transition-all duration-300 ${pathname === categoryPath
-                        ? "border-b-2 border-[#f20404]"
-                        : "hover:text-[#ce2b2b]"
+                      ? "border-b-2 border-[#f20404]"
+                      : "hover:text-[#ce2b2b]"
                       }`}
 
                   >
-                    {category.name}
+                    {category.label}
                   </NavLink>
                 );
               })}

@@ -37,12 +37,12 @@ const TrendingArticles = () => {
 
         {/* Center Big Card */}
         <div className=" col-span-12 sm:col-span-6">
-          <Link href={`/blog/${articles[2].slug}`}>
+          <Link href={`/blog/${articles[2]?.slug}`}>
             <Card1
               article={articles[2]}
-              category={articles[2].category?.name}
-              title={articles[2].title}
-              imageUrl={articles[2].image_url}
+              category={articles[2]?.category?.name}
+              title={articles[2]?.title}
+              imageUrl={articles[2]?.image_url}
               className="h-[300px] md:h-[500px] "
             />
           </Link>

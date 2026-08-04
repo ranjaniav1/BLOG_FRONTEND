@@ -16,7 +16,7 @@ export default function ClientLayout({ children }) {
     <div style={{ background: themeData?.background?.body }} className="flex flex-col">
       <Weather />
       <Navigation />
-      <Header />
+      {/* <Header /> */}
       <main className="flex-1 ">
         {children}
       </main>

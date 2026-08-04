@@ -6,6 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+    --font-body: "Inter", sans-serif;
+  --font-heading: "Cormorant Garamond", serif;
 }
 
 @keyframes scroll {
@@ -44,4 +46,26 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+/* Body */
+body {
+  font-family: var(--font-body);
+  background: #f8f3ec;
+  color: #3a302b;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+/* Editorial headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
