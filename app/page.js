@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import Head from "next/head";
-import Heading from "./components/shared/Heading";
 
 import LazyComponent from "./components/shared/LazyComponent";
 import { useThemeContext } from "./context/ThemeContext";
@@ -12,6 +11,7 @@ import DevTech from "./components/sections/DevTech";
 import BackendSection from "./components/sections/BackendSection";
 import FeaturedArticles from "./components/sections/FeaturedArtices";
 import HeroSection from "./components/sections/HeroSection";
+import SectionHeading from "./components/SectionHeading";
 
 
 export default function Home() {
@@ -34,42 +34,42 @@ export default function Home() {
 
       <div className="hidden md:block">
         <HeroSection />
-        <Heading
-          title={"Trending Tutorials"}
-          subtitle="Most popular guides developers are learning right now"
-          buttonText="Explore Trending Tutorials"
-          link="/categories/trending"
+        <SectionHeading
+          eyebrow="LATEST"
+          title="Recently written"
+          to="/articles"
+          linkLabel="All articles"
         />
       </div>
-
+<TrendingArticles/>
       <LazyComponent component={TrendingArticles} />
-      <Heading
+      <SectionHeading
         title={"Latest Articles"}
         subtitle="Fresh tutorials and development insights"
         buttonText="View Latest Articles"
-        link="/categories/latest"
+        to="/categories/latest"
       />
       <LazyComponent component={LatestArticles} />
-      <Heading
+      <SectionHeading
         title={"Development & Tech"}
         subtitle="Explore modern frameworks, tools, and technologies"
         buttonText="Explore Technologies"
-        link="/categories/dev"
+        to="/categories/dev"
       />
       <LazyComponent component={DevTech} />
-      <Heading
+      <SectionHeading
         title={"AI & ML"}
         subtitle="Learn Artificial Intelligent and Machine Learning"
         buttonText="Explore Backend"
-        link="/categories/artificial-intelligence"
+        to="/categories/artificial-intelligence"
       />
       <LazyComponent component={BackendSection} />
 
-      <Heading
+      <SectionHeading
         title={"Featured Guides"}
         subtitle="Handpicked in-depth tutorials for serious developers"
         buttonText="View Featured Guides"
-        link="/categories/featured"
+        to="/categories/featured"
       />
       <LazyComponent component={FeaturedArticles} />
     </main>

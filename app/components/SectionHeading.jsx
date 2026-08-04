@@ -1,85 +1,74 @@
 "use client";
 
-import { Box } from "@mui/material";
 import Link from "next/link";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, Container } from "@mui/material";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import Text from "./Text";
+import { useThemeContext } from "@/app/context/ThemeContext";
 
 const SectionHeading = ({
-  id,
-  eyebrow,
-  title,
-  to,
-  linkLabel = "View all",
-  mb = 5,
+    id,
+    eyebrow,
+    title,
+    to,
+    linkLabel = "View all",
+    sx = {},
 }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-end",
-        flexWrap: "wrap",
-        gap: 2,
-        mb,
-        pb: 2,
-        borderBottom: "1px solid",
-        borderColor: "divider",
-      }}
-    >
-      <Box>
-        {eyebrow && (
-          <Text type="sectionEyebrow">
-            {eyebrow}
-          </Text>
-        )}
+    const { themeData } = useThemeContext();
 
-        <Text
-          id={id}
-          type="sectionHeading"
-          mt={1}
-        >
-          {title}
-        </Text>
-      </Box>
+    return (
+        <Container maxWidth="xl">
 
-      {to && (
-        <Link
-          href={to}
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 0.5,
-              cursor: "pointer",
-            }}
-          >
-            <Text
-              type="caption"
-              sx={{
-                transition: ".2s",
-                "&:hover": {
-                  color: "text.primary",
-                },
-              }}
+            <Box
+                id={id}
+                sx={{
+                    borderBottom: `1px solid ${themeData?.border}`,
+                    pb: 3,
+                    mb: 5,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-end",
+                    flexWrap: "wrap",
+                    gap: 3,
+                    ...sx,
+                }}
             >
-              {linkLabel}
-            </Text>
+                <Box>
+                    {eyebrow && (
+                        <Text
+                            type="heroLabel"
+                            mb={1}
+                        >
+                            {eyebrow}
+                        </Text>
+                    )}
 
-            <ArrowForwardIcon
-              sx={{
-                fontSize: 18,
-              }}
-            />
-          </Box>
-        </Link>
-      )}
-    </Box>
-  );
+                    <Text type="sectionTitle">
+                        {title}
+                    </Text>
+                </Box>
+
+                {to && (
+                    <Link
+                        href={to}
+                        style={{
+                            textDecoration: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            color: themeData?.text?.secondary,
+                            fontSize: "15px",
+                            fontWeight: 500,
+                            transition: ".25s",
+                        }}
+                    >
+                        {linkLabel}
+                        <ArrowForwardRoundedIcon sx={{ fontSize: 18 }} />
+                    </Link>
+                )}
+            </Box>
+        </Container>
+    );
 };
 
 export default SectionHeading;

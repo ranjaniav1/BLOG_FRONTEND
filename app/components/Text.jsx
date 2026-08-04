@@ -143,7 +143,9 @@ const Text = ({
         fontFamily: preset.fontFamily,
         fontSize: size || preset.fontSize,
         fontWeight: weight || preset.fontWeight,
-        color: colors[color] || preset.color,
+        color: color
+          ? (colors[color] || color)
+          : preset.color,
         textAlign: align,
         textTransform: transform ?? preset.textTransform,
         letterSpacing: spacing ?? preset.letterSpacing,

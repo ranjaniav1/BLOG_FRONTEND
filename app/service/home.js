@@ -12,7 +12,7 @@
 // }
 
 
-import { httpAxiosForHome } from "../utils/httpAxios";
+import { httpAxios, httpAxiosForHome } from "../utils/httpAxios";
 import { apiRequest } from "../utils/apiHandler";
 
 export const getHome = () =>
@@ -56,6 +56,12 @@ export const getArticleBasedonCategory = (slug) =>
     url: `/articles/category/${slug}`,
   }).then((res) => res.data);
 
+export const getCategory = () =>
+  apiRequest({
+    axiosInstance: httpAxios,
+    url: `/categories/`,
+  }).then((res) => res.data.categories);
+
 export const getSingleArticle = (slug) =>
   apiRequest({
     axiosInstance: httpAxiosForHome,
@@ -76,7 +82,7 @@ export const getLessonsBySeries = (seriesId) =>
     url: `/lesson/series/${seriesId}`,
   }).then((res) => res.data.lessons);
 
-  export const getLessonBySlug = ( {seriesSlug, lessonSlug} ) =>
+export const getLessonBySlug = ({ seriesSlug, lessonSlug }) =>
   apiRequest({
     axiosInstance: httpAxiosForHome,
     url: `/lesson/${seriesSlug}/${lessonSlug}`,
