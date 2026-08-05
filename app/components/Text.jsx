@@ -60,19 +60,31 @@ const Text = ({
       color: colors.secondary,
     },
 
+    sectionTitle: {
+      component: "h3",
+      fontFamily: "var(--font-serif)",
+      fontSize: {
+        xs: "2.3rem",
+        sm: "2.8rem",
+      },
+      fontWeight: 100,
+      lineHeight: 1.05,
+      letterSpacing: "-0.03em",
+      color: colors.primary,
+
+    },
     heroTitle: {
       component: "h2",
       fontFamily: "var(--font-serif)",
       fontSize: {
-        xs: "3rem",
-        sm: "4rem",
-        md: "4.6rem",
-        lg: "2rem",
+        xs: "2.5rem",
+        sm: "3.8rem",
       },
-      fontWeight: 200,
-      lineHeight: 0.95,
-      letterSpacing: "-0.055em",
+      fontWeight: 300,
+      lineHeight: 1.05,
+      letterSpacing: "-0.03em",
       color: colors.primary,
+
     },
 
     bodyLarge: {
@@ -100,23 +112,11 @@ const Text = ({
       color: colors.secondary,
     },
 
-    sectionHeading: {
-      component: "h2",
-      fontFamily: "var(--font-heading)",
-      fontSize: {
-        xs: "2.3rem",
-        sm: "2.8rem",
-      },
-      fontWeight: 600,
-      lineHeight: 1.05,
-      letterSpacing: "-0.03em",
-      color: colors.primary,
-    },
-
     cardTitle: {
       component: "h3",
+      fontFamily: "var(--font-serif)",
       fontSize: "1.25rem",
-      fontWeight: 600,
+      fontWeight: 100,
       lineHeight: 1.35,
       color: colors.primary,
     },

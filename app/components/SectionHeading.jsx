@@ -17,57 +17,53 @@ const SectionHeading = ({
     const { themeData } = useThemeContext();
 
     return (
-        <Container maxWidth="xl">
 
-            <Box
-                id={id}
-                sx={{
-                    borderBottom: `1px solid ${themeData?.border}`,
-                    pb: 4,
-                    mb: 6,
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-end",
-                    flexWrap: "wrap",
-                    gap: 3,
-                    ...sx,
-                }}
-            >
-                <Box>
-                    {eyebrow && (
-                        <Text
-                            type="heroLabel"
-                            mb={1}
-                        >
-                            {eyebrow}
-                        </Text>
-                    )}
-
-                    <Text type="sectionHeading" >
-                        {title}
-                    </Text>
-                </Box>
-
-                {to && (
-                    <Link
-                        href={to}
-                        style={{
-                            textDecoration: "none",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "8px",
-                            color: themeData?.text?.secondary,
-                            fontSize: "15px",
-                            fontWeight: 500,
-                            transition: ".25s",
-                        }}
+        <Box
+            id={id}
+            sx={{
+                borderBottom: `1px solid ${themeData?.border}`,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                flexWrap: "wrap",
+                gap: 3,
+                ...sx,
+            }}
+        >
+            <Box>
+                {eyebrow && (
+                    <Text
+                        type="heroLabel"
+                        mb={1}
                     >
-                        {linkLabel}
-                        <ArrowForwardRoundedIcon sx={{ fontSize: 18 }} />
-                    </Link>
+                        {eyebrow}
+                    </Text>
                 )}
+
+                <Text type="sectionTitle" >
+                    {title}
+                </Text>
             </Box>
-        </Container>
+
+            {to && (
+                <Link
+                    href={to}
+                    style={{
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        color: themeData?.text?.secondary,
+                        fontSize: "15px",
+                        fontWeight: 500,
+                        transition: ".25s",
+                    }}
+                >
+                    {linkLabel}
+                    <ArrowForwardRoundedIcon sx={{ fontSize: 18 }} />
+                </Link>
+            )}
+        </Box>
     );
 };
 

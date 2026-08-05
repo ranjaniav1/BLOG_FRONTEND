@@ -11,7 +11,7 @@ import { getHome } from "./service/home";
 
 
 export default function Home() {
-  const [homeData, setHomeData] = useState(null);
+  const [homeData, setHomeData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -45,10 +45,10 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl px-5 pt-16 pb-20 sm:px-8 sm:pt-24">
 
-        <HeroSection hero={homeData.hero} />
+        <HeroSection hero={homeData?.hero} />
 
         <FeaturedArticles
-          featured={homeData.featured}
+          featured={homeData?.featured}
         />
 
 
@@ -58,10 +58,10 @@ export default function Home() {
           // to={`/categories/${section.category.slug}`}
           linkLabel="All articles"
         />
-
-        {/* <TrendingArticles
-              articles={section.articles}
-            /> */}
+        <hr />
+        <TrendingArticles
+          articles={homeData?.articles}
+        />
 
 
 

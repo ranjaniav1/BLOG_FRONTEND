@@ -67,3 +67,7 @@ h6,
 .heading {
   font-family: var(--font-heading);
 }
+hr{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

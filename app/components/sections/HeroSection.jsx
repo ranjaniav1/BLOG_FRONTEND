@@ -19,7 +19,7 @@ export default function HeroSection({ hero }) {
         </Text>
 
         <Text
-          type="sectionHeading"
+          type="heroTitle"
           mt={4}
         // maxWidth="11ch"
         >

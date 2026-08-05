@@ -2,7 +2,6 @@
 
 import React from "react";
 import ArticleCard from "../ArticleCard";
-import SectionHeading from "../SectionHeading";
 import Text from "../Text";
 
 
@@ -17,12 +16,12 @@ const FeaturedArticles = ({ featured }) => {
         Featured story
       </Text>
       <Text
-        type="sectionHeading"
+        type="sectionTitle"
         mt={2}
       >
         The one I'd hand you first
       </Text>
-
+      <hr />
       <div className="mt-10">
         {
           featured.map((article) => (
