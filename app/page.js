@@ -8,6 +8,8 @@ import FeaturedArticles from "./components/sections/FeaturedArtices";
 import TrendingArticles from "./components/sections/TrendingArticles";
 import SectionHeading from "./components/SectionHeading";
 import { getHome } from "./service/home";
+import QuoteSection from "./components/QuoteSection";
+import CategoriesSection from "./components/CategoriesSection";
 
 
 export default function Home() {
@@ -52,18 +54,13 @@ export default function Home() {
         />
 
 
-        <SectionHeading
-          eyebrow="latest"
-          title="Recently written"
-          // to={`/categories/${section.category.slug}`}
-          linkLabel="All articles"
-        />
-        <hr />
+        
+      
         <TrendingArticles
           articles={homeData?.articles}
         />
-
-
+        <QuoteSection />
+        <CategoriesSection category={homeData?.categories} />
 
       </section>
     </>
