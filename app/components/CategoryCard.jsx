@@ -1,7 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import Text from "./Text";
 import { Card } from "@mui/material";
-import { useThemeContext } from "../context/ThemeContext";
+import Text from "./Text";
 
 export default function CategoryCard({
     name,
@@ -9,7 +10,6 @@ export default function CategoryCard({
     description,
     totalArticles = 0,
 }) {
-    const { themeData } = useThemeContext();
     return (
         <Link href={`/categories/${slug}`} style={{ textDecoration: "none" }}>
             <Card
@@ -26,28 +26,24 @@ export default function CategoryCard({
                 }}
             >
                 <Text
-                    size="11px"
-                    color="secondary"
-                    spacing={3}
-                    transform="uppercase"
+                    type="heroLabel"
+                    mb={2}
                 >
                     {totalArticles} Articles
                 </Text>
 
-                <h2
-                    className="mt-4 font-serif text-2xl tracking-tight group-hover:underline"
-                    style={{ color: themeData?.text?.primary }}
+                <Text
+                    type="cardTitle"
+                    mb={2}
                 >
                     {name}
-                </h2>
+                </Text>
 
-                <p
-                    className="mt-3 text-sm leading-relaxed"
-                    style={{ color: themeData?.text?.secondary }}
+                <Text
+                    type="cardDescription"
                 >
                     {description}
-                </p>
-
+                </Text>
             </Card>
         </Link>
     );

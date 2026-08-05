@@ -3,9 +3,6 @@ import Link from "next/link";
 import { getCategory } from "../service/home";
 import { useEffect, useState } from "react";
 import Text from "../components/Text";
-import Card1 from "../components/cards/Card1";
-import Card4 from "../components/cards/Card4";
-import Card2 from "../components/cards/Card2";
 import CategoryCard from "../components/CategoryCard";
 
 
@@ -33,7 +30,7 @@ export default function CategoriesPage() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
             <Text type="heroLabel">Categories</Text>
 
-            <Text type="heroTitle"
+            <Text type="sectionTitle"
                 mt={2}>Choose where to begin</Text>
             <Text type="bodyLarge"
                 mt={1} >
@@ -42,9 +39,9 @@ export default function CategoriesPage() {
 
             <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {categories.map((c) => (
-                   
 
-                        <CategoryCard slug={c.slug}totalArticles={0} name={c.name} description={c.description} key={c.slug}/>
+
+                    <CategoryCard slug={c.slug} totalArticles={0} name={c.name} description={c.description} key={c.slug} />
 
                 ))}
             </div>
