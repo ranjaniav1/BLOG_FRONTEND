@@ -23,8 +23,8 @@ const SectionHeading = ({
                 id={id}
                 sx={{
                     borderBottom: `1px solid ${themeData?.border}`,
-                    pb: 3,
-                    mb: 5,
+                    pb: 4,
+                    mb: 6,
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "flex-end",
@@ -43,7 +43,7 @@ const SectionHeading = ({
                         </Text>
                     )}
 
-                    <Text type="sectionTitle">
+                    <Text type="sectionHeading" >
                         {title}
                     </Text>
                 </Box>

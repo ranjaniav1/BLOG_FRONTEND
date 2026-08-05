@@ -1,77 +1,71 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 
-import LazyComponent from "./components/shared/LazyComponent";
-import { useThemeContext } from "./context/ThemeContext";
-import TrendingArticles from "./components/sections/TrendingArticles";
-import LatestArticles from "./components/sections/LatestArticles";
-import DevTech from "./components/sections/DevTech";
-import BackendSection from "./components/sections/BackendSection";
-import FeaturedArticles from "./components/sections/FeaturedArtices";
 import HeroSection from "./components/sections/HeroSection";
+import FeaturedArticles from "./components/sections/FeaturedArtices";
+import TrendingArticles from "./components/sections/TrendingArticles";
 import SectionHeading from "./components/SectionHeading";
+import { getHome } from "./service/home";
 
 
 export default function Home() {
-  const { themeData } = useThemeContext();
+  const [homeData, setHomeData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "Varsani DevBlog | Learn Full Stack Development";
+    const fetchHome = async () => {
+      try {
+        const data = await getHome();
+        console.log(data)
+        setHomeData(data);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHome();
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <main className="flex flex-col justify-between" style={{ background: themeData?.background }}>
+    <>
       <Head>
-        <title>Varsani DevBlog | Full Stack Tutorials</title>
+        <title>Ranjani Varsani | Still Learning</title>
+
         <meta
           name="description"
-          content="Explore full stack development tutorials, Next.js guides, backend systems, and real-world coding projects."
+          content="Essays about life, self-growth, happiness, books, relationships, and everything I'm still learning."
         />
       </Head>
 
+      <section className="mx-auto max-w-6xl px-5 pt-16 pb-20 sm:px-8 sm:pt-24">
 
-      <div className="hidden md:block">
-        <HeroSection />
+        <HeroSection hero={homeData.hero} />
+
+        <FeaturedArticles
+          featured={homeData.featured}
+        />
+
+
         <SectionHeading
-          eyebrow="LATEST"
+          eyebrow="latest"
           title="Recently written"
-          to="/articles"
+          // to={`/categories/${section.category.slug}`}
           linkLabel="All articles"
         />
-      </div>
-<TrendingArticles/>
-      <LazyComponent component={TrendingArticles} />
-      <SectionHeading
-        title={"Latest Articles"}
-        subtitle="Fresh tutorials and development insights"
-        buttonText="View Latest Articles"
-        to="/categories/latest"
-      />
-      <LazyComponent component={LatestArticles} />
-      <SectionHeading
-        title={"Development & Tech"}
-        subtitle="Explore modern frameworks, tools, and technologies"
-        buttonText="Explore Technologies"
-        to="/categories/dev"
-      />
-      <LazyComponent component={DevTech} />
-      <SectionHeading
-        title={"AI & ML"}
-        subtitle="Learn Artificial Intelligent and Machine Learning"
-        buttonText="Explore Backend"
-        to="/categories/artificial-intelligence"
-      />
-      <LazyComponent component={BackendSection} />
 
-      <SectionHeading
-        title={"Featured Guides"}
-        subtitle="Handpicked in-depth tutorials for serious developers"
-        buttonText="View Featured Guides"
-        to="/categories/featured"
-      />
-      <LazyComponent component={FeaturedArticles} />
-    </main>
+        {/* <TrendingArticles
+              articles={section.articles}
+            /> */}
+
+
+
+      </section>
+    </>
   );
 }

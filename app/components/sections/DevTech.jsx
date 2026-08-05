@@ -12,11 +12,11 @@ const DevTech = () => {
   const { homeData: news, loading } = useHomeContext();
 
 
-  if (loading || !news.devops) {
+  if (loading || !news.mindset) {
     return <TechnologySkeleton />;
   }
 
-  const articles = news.devops;
+  const articles = news.mindset;
 
   if (articles.length === 0) {
     return <h2>article not found</h2>;

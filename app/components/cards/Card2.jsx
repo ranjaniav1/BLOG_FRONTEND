@@ -5,7 +5,7 @@ import FavoriteButton from "@/app/components/features/FavouriteButton";
 import { useThemeContext } from "@/app/context/ThemeContext";
 import { truncateText } from "@/app/utils/textUtils";
 
-const Card2 = ({ category, title, imageUrl, article,className }) => {
+const Card2 = ({ category, title, imageUrl, article, className }) => {
   const { themeData } = useThemeContext(article?._id);
   const { isArticleFavorite, toggleFavorite, loading } = useArticleLikes(
     article?._id
@@ -49,12 +49,12 @@ const Card2 = ({ category, title, imageUrl, article,className }) => {
         </div>
         <div
           className="text-sm md:text-lg  font-bold  mt-2 group-hover:text-red-500"
-          style={{ color: themeData?.text?.card }}
+          style={{ color: themeData?.text?.button, }}
         >
-          {truncateText(title, 60)}
-        </div>
+        {truncateText(title, 60)}
       </div>
     </div>
+    </div >
   );
 };
 

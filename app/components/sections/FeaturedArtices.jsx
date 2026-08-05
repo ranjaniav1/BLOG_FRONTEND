@@ -1,51 +1,37 @@
 "use client";
 
 import React from "react";
-import { Box, Container, Grid } from "@mui/material";
-import Link from "next/link";
-import { TechnologySkeleton } from "@/app/components/features/Skeleton";
-import Card5 from "../cards/Card5";
-import NewsSlider from "../features/Slider";
-import { useHomeContext } from "@/app/utils/useHome";
-
-const FeaturedArticles = () => {
-  const { homeData: news, loading } = useHomeContext();
+import ArticleCard from "../ArticleCard";
+import SectionHeading from "../SectionHeading";
+import Text from "../Text";
 
 
-  if (loading || !news.mobile) {
-    return <TechnologySkeleton />;
-  }
+const FeaturedArticles = ({ featured }) => {
 
-  const articles = news.mobile;
-
-  if (articles.length === 0) {
-    return <h2>Article not found...</h2>;
-  }
 
 
 
   return (
-    <Container maxWidth="xl" >
-      <NewsSlider slidesToShow={4}>
-        {articles.map((article) => (
-          <Grid container spacing={2} justifyContent="center" key={article._id}>
-            <Grid item xs={12}>
-              <Link
-                href={`/blog/${article?.slug}`}
-              >
-                <Card5
-                  article={article}
-                  category={article.category?.name}
-                  title={article.title}
-                  imageUrl={article.image_url}
-                  className="h-[250px]"
-                />
-              </Link>
-            </Grid>
-          </Grid>
-        ))}
-      </NewsSlider>
-    </Container>
+    <section aria-labelledby="featured" className="pt-16 pb-20  sm:pt-24">
+      <Text type="heroLabel">
+        Featured story
+      </Text>
+      <Text
+        type="sectionHeading"
+        mt={2}
+      >
+        The one I'd hand you first
+      </Text>
+
+      <div className="mt-10">
+        {
+          featured.map((article) => (
+
+            <ArticleCard article={article} key={article._id} size="lg" />
+          ))
+        }
+      </div>
+    </section>
   );
 };
 

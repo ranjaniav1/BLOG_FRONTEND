@@ -11,11 +11,11 @@ const BackendSection = () => {
   const { homeData: news, loading } = useHomeContext();
 
 
-  if (loading || !news.ai) {
+  if (loading || !news.self-growth) {
     return <TravelSkeleton />;
   }
 
-  const articles = news.ai;
+  const articles = news.self-growth;
 
   return (
     <Container maxWidth="xl">

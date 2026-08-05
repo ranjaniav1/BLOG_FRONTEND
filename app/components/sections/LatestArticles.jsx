@@ -10,11 +10,11 @@ import { useHomeContext } from "@/app/utils/useHome";
 const LatestArticles = () => {
   const { homeData: news, loading } = useHomeContext();
 
-  if (loading || !news.frontend) {
+  if (loading || !news?.recentNews) {
     return <RecentSkeleton />;
   }
 
-  const articles = news.frontend;
+  const articles = news?.recentNews;
 
   return (
     <Container maxWidth="xl">
@@ -51,4 +51,4 @@ const LatestArticles = () => {
   );
 };
 
-export default  LatestArticles
+export default LatestArticles

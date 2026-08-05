@@ -1,39 +1,80 @@
-import { Link } from "@tanstack/react-router";
+"use client";
 
-export function ArticleCard({ article, size = "md" }) {
-    return (
-        <article className="group">
-            <Link to="/articles/$slug" params={{ slug: article.slug }} className="block">
-                <div className="overflow-hidden rounded-2xl bg-muted shadow-[var(--shadow-soft)]">
-                    <img
-                        src={article.cover}
-                        alt={`Cover image for ${article.title}`}
-                        loading="lazy"
-                        width={1200}
-                        height={800}
-                        className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] ${size === "lg" ? "aspect-[16/10]" : "aspect-[3/2]"
-                            }`}
-                    />
-                </div>
-                <div className="mt-5">
-                    <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                        <span className="text-sage">{article.category}</span>
-                        {article.featured && (
-                            <span className="rounded-full bg-accent px-2.5 py-1 text-[10px] tracking-[0.14em] text-accent-foreground">Featured</span>
-                        )}
-                    </div>
-                    <h3
-                        className={`mt-3 font-serif tracking-tight decoration-1 underline-offset-4 group-hover:underline ${size === "lg" ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
-                            }`}
-                    >
-                        {article.title}
-                    </h3>
-                    <p className="mt-3 max-w-prose text-[15px] leading-relaxed text-muted-foreground">{article.excerpt}</p>
-                    <p className="mt-4 text-xs text-muted-foreground">
-                        {formatDate(article.date)} · {article.readingTime} min read
-                    </p>
-                </div>
-            </Link>
-        </article>
-    );
+import Link from "next/link";
+import parse from "html-react-parser";
+import Text from "./Text";
+export default function ArticleCard({
+  article,
+  size = "sm",
+}) {
+  const formatDate = (date) =>
+    new Date(date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+
+  return (
+    <article className="group">
+      <Link href={`/blog/${article.slug}`} className="block">
+        {/* Image */}
+        <div className="overflow-hidden rounded-3xl bg-neutral-100">
+          <img
+            src={article.image_url}
+            alt={parse(article.title)}
+            loading="lazy"
+            className={`w-full object-cover transition-all duration-700 group-hover:scale-[1.04] ${size === "lg"
+              ? "aspect-[16/10]"
+              : "aspect-[3/2]"
+              }`}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="mt-5">
+          {/* Category */}
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-neutral-500">
+            <span className="font-medium text-emerald-700">
+              {article.category?.name}
+            </span>
+
+            {article.is_featured && (
+
+              <Text type="heroLabel">
+                Featured
+              </Text>
+            )}
+          </div>
+
+          {/* Title */}
+          <Text
+            type="heroTitle"
+            mt={6}
+            maxWidth="50rem"
+          >
+            {parse(article.title)}
+          </Text>
+
+
+          {/* Excerpt */}
+          <Text
+            type="bodyLarge"
+            mt={2}
+            maxWidth="40rem"
+          >
+            {article.excerpt}
+          </Text>
+
+          {/* Footer */}
+          <div className="mt-5 flex items-center gap-2 text-sm text-neutral-500">
+            <span>{formatDate(article.published_at)}</span>
+
+            <span>•</span>
+
+            <span>{article.read_time} min read</span>
+          </div>
+        </div>
+      </Link>
+    </article>
+  );
 }

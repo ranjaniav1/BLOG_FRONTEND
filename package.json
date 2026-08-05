@@ -16,6 +16,7 @@
     "@vercel/analytics": "^1.5.0",
     "axios": "^1.8.2",
     "date-fns": "^4.1.0",
+    "html-react-parser": "^6.1.5",
     "js-cookie": "^3.0.5",
     "konva": "^8.4.3",
     "next": "14.2.25",

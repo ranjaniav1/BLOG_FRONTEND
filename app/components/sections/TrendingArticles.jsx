@@ -7,20 +7,19 @@ import { PopularSkeleton } from "../features/Skeleton";
 import Card1 from "../cards/Card1";
 import { useHomeContext } from "@/app/utils/useHome";
 
-const TrendingArticles = () => {
-  const { homeData: news, loading } = useHomeContext();
-  const popular = news?.popularNews;
+const TrendingArticles = ({ category }) => {
+  const { homeData: articles, loading } = useHomeContext();
 
-  if (loading || !popular) {
+  if (loading) {
     return <PopularSkeleton />;
   }
+  console.log(articles)
 
-  const articles = popular;
 
   return (
     <Container maxWidth="xl">
       <div className="grid grid-cols-12 gap-2">
-        {/* Left Side Cards */}
+        {/* Left */}
         <div className="col-span-12 sm:col-span-3 flex flex-col gap-2">
           {articles.slice(0, 2).map((article) => (
             <Link key={article._id} href={`/blog/${article.slug}`}>
@@ -35,20 +34,22 @@ const TrendingArticles = () => {
           ))}
         </div>
 
-        {/* Center Big Card */}
-        <div className=" col-span-12 sm:col-span-6">
-          <Link href={`/blog/${articles[2]?.slug}`}>
-            <Card1
-              article={articles[2]}
-              category={articles[2]?.category?.name}
-              title={articles[2]?.title}
-              imageUrl={articles[2]?.image_url}
-              className="h-[300px] md:h-[500px] "
-            />
-          </Link>
+        {/* Center */}
+        <div className="col-span-12 sm:col-span-6">
+          {articles[2] && (
+            <Link href={`/blog/${articles[2].slug}`}>
+              <Card1
+                article={articles[2]}
+                category={articles[2].category?.name}
+                title={articles[2].title}
+                imageUrl={articles[2].image_url}
+                className="h-[300px] md:h-[500px]"
+              />
+            </Link>
+          )}
         </div>
 
-        {/* Right Side Cards */}
+        {/* Right */}
         <div className="col-span-12 sm:col-span-3 flex flex-col gap-2">
           {articles.slice(3, 5).map((article) => (
             <Link key={article._id} href={`/blog/${article.slug}`}>

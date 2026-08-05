@@ -51,3 +51,30 @@ export const tabs = [
   { href: "/newsletter", label: "Letters" },
   { href: "/contact", label: "Contact" },
 ]
+
+export const sections = [
+  {
+    slug: "life-lessons",
+    eyebrow: "LIFE LESSONS",
+    title: "Lessons life quietly taught me",
+    linkLabel: "View all",
+  },
+  {
+    slug: "mindset",
+    eyebrow: "MINDSET",
+    title: "Changing how we think",
+    linkLabel: "Explore mindset",
+  },
+  {
+    slug: "self-growth",
+    eyebrow: "SELF GROWTH",
+    title: "Becoming a little better every day",
+    linkLabel: "Read more",
+  },
+  {
+    slug: "daily-reflections",
+    eyebrow: "DAILY REFLECTIONS",
+    title: "Small moments worth remembering",
+    linkLabel: "See reflections",
+  },
+];

@@ -1,6 +1,6 @@
 "use client";
 
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Fraunces, Karla } from "next/font/google";
 import ClientLayout from "./layout/ClientLayout";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
@@ -10,16 +10,23 @@ import { FavoritesProvider } from "./context/FavoritesContext";
 import { HomeProvider } from "./utils/useHome";
 import { AuthProvider } from "./context/AuthContext";
 import { Analytics } from "@vercel/analytics/react"
-const inter = Inter({
+const karla = Karla({
   subsets: ["latin"],
-  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
   display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-heading",
-  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-serif",
   display: "swap",
 });
 export default function RootLayout({ children }) {
@@ -42,8 +49,9 @@ export default function RootLayout({ children }) {
         />
 
         <title>Varsani DevBlog | Full Stack Tutorials & Developer Insights</title>      </head>
-      <body className={`${inter.className} ${cormorant.variable} flex flex-col`}>
-        <Toaster position="top-right" toastOptions={{ duration: 4000, style: { zIndex: 9999 } }} />
+<body
+  className={`${karla.variable} ${cormorant.variable} ${fraunces.variable} flex flex-col`}
+>        <Toaster position="top-right" toastOptions={{ duration: 4000, style: { zIndex: 9999 } }} />
         <AuthProvider>
           <ThemeProvider>
             <CssBaseline />
