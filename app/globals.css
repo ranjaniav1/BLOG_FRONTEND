@@ -71,3 +71,87 @@ hr{
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+
+.article-content {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #4b3f38;
+  line-height: 1.9;
+  font-size: 18px;
+  font-family: var(--font-sans);
+}
+
+/* Headings */
+.article-content h2 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 3rem 0 1.5rem;
+  color: #2d241f;
+}
+
+.article-content h3 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 2.5rem 0 1rem;
+  color: #2d241f;
+}
+
+/* Paragraphs */
+.article-content p {
+  margin: 1.5rem 0;
+}
+
+/* Lists */
+.article-content ul,
+.article-content ol {
+  margin: 1.5rem 0;
+  padding-left: 1.8rem;
+}
+
+.article-content li {
+  margin: 0.6rem 0;
+}
+
+/* Quotes */
+.article-content blockquote {
+  margin: 2.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid #d8c9b7;
+  font-style: italic;
+  color: #6f6258;
+}
+
+/* Horizontal line */
+.article-content hr {
+  border: none;
+  border-top: 1px solid #e6ddd4;
+  margin: 3rem 0;
+}
+
+/* Links */
+.article-content a {
+  color: #0f766e;
+  text-decoration: underline;
+}
+
+/* Images */
+.article-content img {
+  width: 100%;
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+
+/* Strong */
+.article-content strong {
+  color: #2d241f;
+  font-weight: 600;
+}
+
+/* Italic */
+.article-content em {
+  font-style: italic;
+}

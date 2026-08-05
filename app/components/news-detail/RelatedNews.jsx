@@ -1,37 +1,33 @@
-import React, { useState } from "react";
+"use client";
+
 import Link from "next/link";
-import Card4 from "@/app/components/cards/Card4";
-import { useThemeContext } from "@/app/context/ThemeContext";
+import SectionHeading from "../SectionHeading";
+import ArticleCard from "../ArticleCard";
 
-const RelatedNews = ({ articles }) => {
-  const { themeData } = useThemeContext()
+const RelatedNews = ({ articles = [] }) => {
+  if (!articles.length) return null;
+
   return (
-    <div>
-      <div className="text-xs md:text-lg font-semibold px-3 py-1 rounded-lg mb-4" style={{
-        backgroundColor: themeData?.background?.button,
-        color: themeData?.text?.button,
-      }}>
-        Related News
-      </div>
-      <div className="space-y-4">
-        {articles.length > 0 ? (
-          articles.map((article) => (
-            <Link href={`/blog/${article.slug}`} key={article?._id}>
-              <Card4
-                article={article}
-                category={article.category?.name}
-                title={article.title}
-                imageUrl={article.image_url}
-              />
-            </Link>
-          ))
-        ) : (
-          <p className="text-gray-500 text-center">No related articles found.</p>
-        )}
-      </div>
-   
+    <section className="mt-24">
+      <SectionHeading
+        eyebrow="Continue Reading"
+        title="You may also enjoy"
+      />
 
-    </div>
+      <div className="mt-10 grid gap-10 md:grid-cols-2">
+        {articles.slice(0, 2).map((article) => (
+          <Link
+            key={article._id}
+            href={`/blog/${article.slug}`}
+          >
+            <ArticleCard
+              article={article}
+              variant="editorial"
+            />
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 };
 

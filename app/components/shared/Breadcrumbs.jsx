@@ -1,44 +1,41 @@
-import React from "react";
-import { Breadcrumbs, Container, Link, Typography } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import { useThemeContext } from "@/app/context/ThemeContext";
+"use client";
+
+import Link from "next/link";
+import { Breadcrumbs } from "@mui/material";
+import Text from "../Text";
 
 const Breadcumps = ({ heading }) => {
-  const { themeData } = useThemeContext()
   return (
-    <div
-      className="py-4"
-      style={{
-        backgroundColor: themeData?.background?.header, // Background color from theme
-        color: themeData?.text?.primary
-      }}
-    >      <Container maxWidth="xl">
-        <Breadcrumbs aria-label="breadcrumb" separator="|" sx={{ color: themeData?.text?.primary }}>
-          <Link
-            href="/"
-            underline="hover"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              color: themeData?.text?.primary,
-            }}
-          >
-            <HomeIcon fontSize="small" />
-            Home
-          </Link>
-          {heading && (
-            <Typography
-              sx={{
-                fontWeight: 600,
-                textTransform: "capitalize",
-                color: themeData?.text?.primary,
-              }}>
-              {heading}
-            </Typography>
-          )}
-        </Breadcrumbs>
-      </Container>
-    </div>
+    <Breadcrumbs separator="/" sx={{my:5}}>
+      <Link
+        href="/"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          textDecoration: "none",
+          color: "inherit",
+        }}
+      >
+
+        <Text type="body">Home</Text>
+      </Link>
+      <Link
+        href="/"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          textDecoration: "none",
+          color: "inherit",
+        }}
+      >
+
+        <Text type="body">Articles</Text>
+      </Link>
+
+      <Text type="body">{heading.category.name}</Text>
+    </Breadcrumbs>
   );
 };
 

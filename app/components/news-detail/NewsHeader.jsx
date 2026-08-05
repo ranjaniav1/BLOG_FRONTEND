@@ -1,23 +1,73 @@
-import { useThemeContext } from "@/app/context/ThemeContext";
+"use client";
+
 import React from "react";
+import Text from "../Text";
+import { Box } from "@mui/material";
+import NewsIcons from "./NewsIcons";
 
 const NewsHeader = ({ article }) => {
-  const { themeData } = useThemeContext()
   return (
-    <div className="mb-4">
-      <div className=" text-xs md:text-lg font-semibold px-3 py-1 rounded-lg w-fit" style={{
-        backgroundColor: themeData?.background?.button,
-        color: themeData?.text?.button,
-      }}>
+    <Box sx={{ mb: 8 }}>
+      <Text type="heroLabel">
         {article.category?.name}
-      </div>
-      <h1 className="text-sm sm:text-lg font-bold mt-1" style={{ color: themeData?.text.primary }}>
+      </Text>
+
+      <Text
+        type="sectionTitle"
+        mt={2}
+      >
         {article.title}
-      </h1>
-      <p className=" mt-1" style={{ color: themeData?.text?.secondary }}>
-        By {article.createdBy?.fullname} • {new Date(article.published_at).toLocaleDateString()}
-      </p>
-    </div>
+      </Text>
+
+      {article.excerpt && (
+        <Text
+          type="bodyLarge"
+          italic
+          mt={3}
+        >
+          {article.excerpt}
+        </Text>
+      )}
+
+      <Box
+        sx={{
+          my: 5,
+          py: 3,
+          borderTop: "1px solid",
+          borderBottom: "1px solid",
+          borderColor: "divider",
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          flexWrap: "wrap",
+        }}
+      >
+        <Text type="body">
+          {article.createdBy?.fullname}
+        </Text>
+
+        <Text type="body">•</Text>
+
+        <Text type="body">
+          {new Date(article.published_at).toLocaleDateString()}
+        </Text>
+
+        <Text type="body">•</Text>
+
+        <Text type="body">
+          {article.read_time} min read
+        </Text>
+
+        <Box sx={{
+          ml: { xs: 0, md: "auto" },
+          width: { xs: "100%", md: "auto" },
+          display: "flex",
+          justifyContent: { xs: "flex-start", md: "flex-end" },
+        }}>
+          <NewsIcons />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

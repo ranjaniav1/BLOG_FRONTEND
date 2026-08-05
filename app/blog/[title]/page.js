@@ -1,52 +1,61 @@
 "use client";
+
 import React, { useEffect } from "react";
-import { Container, Grid } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import { useParams } from "next/navigation";
+
 import Breadcumps from "@/app/components/shared/Breadcrumbs";
 import { NewsDetailSkeleton } from "@/app/components/features/Skeleton";
 import NewsHeader from "@/app/components/news-detail/NewsHeader";
-import NewsIcons from "@/app/components/news-detail/NewsIcons";
+import NewsContent from "@/app/components/news-detail/NewsContent";
 import RelatedNews from "@/app/components/news-detail/RelatedNews";
 import CommentsDrawer from "@/app/components/news-detail/CommentDrawer";
-import NewsContent from "@/app/components/news-detail/NewsContent";
 import { useSingleArticles } from "@/app/utils/useSingleArticle";
 
 const NewsDetailPage = () => {
   const { title } = useParams();
-  const { article: clickedArticle, loading, relatedArticles } = useSingleArticles(title);
-  useEffect(() => {
-    document.title = title ? `Enews - ${title} News ` : "Enews - Latest News";
-  }, [title]);
 
+  const {
+    article: clickedArticle,
+    loading,
+    relatedArticles,
+  } = useSingleArticles(title);
+
+  useEffect(() => {
+    document.title = title
+      ? `${title} | Ranjani Varsani`
+      : "Ranjani Varsani";
+  }, [title]);
 
   if (loading || !clickedArticle) {
     return <NewsDetailSkeleton />;
   }
 
   return (
-    <div className=" min-h-screen" >
-      <Breadcumps heading={title} />
-      <Container maxWidth="xl" sx={{ my: "2%" }}>
-        <Grid container spacing={3}>
-          {/* Left Side - Display Big Image */}
-          <Grid item xs={12} md={8}>
-            <NewsHeader article={clickedArticle} />
-            <NewsIcons article={clickedArticle} title={title} />
-            <NewsContent article={clickedArticle} />
+    <main>
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            maxWidth: "760px",
+            mx: "auto",
+            py: {
+              xs: 5,
+              md: 8,
+            },
+          }}
+        >
+          <Breadcumps heading={clickedArticle} />
 
-          </Grid>
-          {/* Right Side - Display Related Articles */}
-          <Grid item xs={12} md={4}>
-            <RelatedNews articles={relatedArticles} />
+          <NewsHeader article={clickedArticle} />
 
-          </Grid>
-        </Grid>
+          <NewsContent article={clickedArticle} />
+
+          <RelatedNews articles={relatedArticles} />
+
+          <CommentsDrawer article={clickedArticle} />
+        </Box>
       </Container>
-
-      {/* Comments Drawer */}
-      <CommentsDrawer article={clickedArticle} />
-
-    </div>
+    </main>
   );
 };
 
