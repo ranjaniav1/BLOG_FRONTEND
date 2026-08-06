@@ -8,8 +8,11 @@ import Text from "../shared/Text";
 import Button from "../shared/Button";
 import Link from "next/link";
 import parse from "html-react-parser";
-export default function HeroSection({ hero }) {
-
+import { HeroSkeleton } from "../features/Skeleton";
+export default function HeroSection({ hero, loading }) {
+  if (loading) {
+    return <HeroSkeleton />;
+  }
 
   return (
     <div className="grid items-center gap-20 lg:grid-cols-[1.1fr_0.9fr]">

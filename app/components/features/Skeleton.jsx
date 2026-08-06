@@ -7,9 +7,6 @@ import {
 } from "@mui/material";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Autoplay } from "swiper/modules";
 
 export const CardSkeleton = ({ height = "191px" }) => {
   const { config } = useThemeContext()
@@ -22,84 +19,6 @@ export const CardSkeleton = ({ height = "191px" }) => {
   );
 };
 
-export const PopularSkeleton = () => {
-  return (
-    <Container maxWidth="xl">
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-        <div className="grid grid-cols-1">
-          <CardSkeleton height="191px" />
-          <CardSkeleton height="191px" />
-        </div>
-
-        <div className="col-span-1 sm:col-span-2">
-          <CardSkeleton height="400px" />
-        </div>
-
-        <div className="grid grid-cols-1">
-          <CardSkeleton height="191px" />
-          <CardSkeleton height="191px" />
-        </div>
-      </div>
-    </Container>
-  );
-};
-
-export const RecentSkeleton = () => {
-  return (
-    <Container maxWidth="xl">
-      <CardSkeleton height="500px" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-        <CardSkeleton height="240px" />
-        <CardSkeleton height="240px" />
-      </div>
-    </Container>
-  );
-};
-
-// Technology Section Skeleton with Slider
-export const TechnologySkeleton = () => {
-  return (
-    <Container maxWidth="xl" sx={{ marginBottom: "2%" }}>
-      <Swiper
-        modules={[Autoplay]}
-        spaceBetween={20}
-        slidesPerView={4}
-        autoplay={{ delay: 5000 }}
-        loop={true}
-        breakpoints={{
-          0: { slidesPerView: 1 },
-          600: { slidesPerView: 2 },
-          900: { slidesPerView: 3 },
-          1200: { slidesPerView: 4 },
-        }}
-      >
-        {Array.from({ length: 4 }).map((_, index) => (
-          <SwiperSlide key={index}>
-            <Box px={1}>
-              <Skeleton variant="rectangular" width="100%" height="300px" />
-              <Skeleton variant="text" width="80%" sx={{ mt: 1 }} />
-              <Skeleton variant="text" width="60%" />
-            </Box>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Container>
-  );
-};
-
-export const TravelSkeleton = () => {
-  return (
-    <Container maxWidth="xl">
-      <Grid container spacing={2}>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <CardSkeleton height="250px" />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-  );
-};
 
 export const NewsDetailSkeleton = () => {
   return (
@@ -134,5 +53,206 @@ export const NewsDetailSkeleton = () => {
         </Grid>
       </Container>
     </div>
+  );
+};
+
+
+export const ArticleCardSkeleton = ({ editorial = false }) => {
+  return (
+    <article>
+      <Skeleton
+        variant="rounded"
+        animation="wave"
+        className={`w-full ${editorial ? "aspect-[3/2]" : "aspect-[16/10]"
+          } rounded-[28px]`}
+      />
+
+      <Skeleton
+        variant="text"
+        width={110}
+        height={18}
+        sx={{ mt: 3 }}
+      />
+
+      <Skeleton
+        variant="text"
+        width="90%"
+        height={46}
+      />
+
+      <Skeleton
+        variant="text"
+        width="100%"
+        height={22}
+      />
+
+      <Skeleton
+        variant="text"
+        width="75%"
+        height={22}
+      />
+
+      <div className="flex gap-3 mt-4">
+        <Skeleton width={90} height={18} />
+        <Skeleton width={80} height={18} />
+      </div>
+    </article>
+  );
+};
+export const ArticleSectionSkeleton = () => {
+  return (
+    <>
+      <div className="flex items-end justify-between mb-12">
+        <div>
+          <Skeleton width={90} height={18} />
+
+          <Skeleton
+            width={260}
+            height={48}
+            sx={{ mt: 1 }}
+          />
+        </div>
+
+        <Skeleton
+          variant="rounded"
+          width={110}
+          height={36}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <ArticleCardSkeleton
+            key={index}
+            editorial
+          />
+        ))}
+      </div>
+    </>
+  );
+};
+export const HeroSkeleton = () => {
+  return (
+    <div className="grid gap-20 lg:grid-cols-[1.1fr_0.9fr] items-center">
+      <div>
+        <Skeleton width={120} height={22} />
+
+        <Skeleton
+          width="90%"
+          height={80}
+          sx={{ mt: 2 }}
+        />
+
+        <Skeleton
+          width="95%"
+          height={28}
+          sx={{ mt: 3 }}
+        />
+
+        <Skeleton width="80%" height={28} />
+
+        <Skeleton width="70%" height={28} />
+
+        <div className="flex gap-3 mt-8">
+          <Skeleton
+            variant="rounded"
+            width={150}
+            height={48}
+          />
+
+          <Skeleton
+            variant="rounded"
+            width={180}
+            height={48}
+          />
+        </div>
+      </div>
+
+      <Skeleton
+        variant="rounded"
+        className="aspect-[4/3] w-full rounded-[36px]"
+      />
+    </div>
+  );
+};
+
+export const FeaturedSkeleton = () => {
+  return (
+    <section className="pt-16 pb-20">
+      <Skeleton width={120} height={20} />
+
+      <Skeleton
+        width={260}
+        height={48}
+        sx={{ mt: 2 }}
+      />
+
+      <div className="mt-10">
+        <ArticleCardSkeleton />
+      </div>
+    </section>
+  );
+};
+
+
+export const ArticleDetailSkeleton = () => {
+  return (
+    <div className="max-w-4xl mx-auto">
+      <Skeleton width={120} height={20} />
+
+      <Skeleton
+        width="90%"
+        height={70}
+        sx={{ mt: 2 }}
+      />
+
+      <div className="flex gap-4 mt-3">
+        <Skeleton width={120} height={18} />
+        <Skeleton width={90} height={18} />
+      </div>
+
+      <Skeleton
+        variant="rounded"
+        className="aspect-[16/9] w-full mt-8 rounded-[28px]"
+      />
+
+      {Array.from({ length: 9 }).map((_, i) => (
+        <Skeleton
+          key={i}
+          height={26}
+          sx={{ mt: 2 }}
+        />
+      ))}
+    </div>
+  );
+};
+
+
+export const CategorySkeleton = () => {
+  return (
+    <section>
+      <div className="mx-auto max-w-6xl px-5 py-14">
+        {/* Header */}
+        <div className="max-w-3xl">
+          <Skeleton width={80} height={20} />
+          <Skeleton
+            width="60%"
+            height={70}
+            sx={{ mt: 1 }}
+          />
+          <Skeleton
+            width="40%"
+            height={30}
+          />
+        </div>
+
+        {/* Articles */}
+        <div className="mt-14 grid gap-12 md:grid-cols-2">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <ArticleCardSkeleton key={i} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };

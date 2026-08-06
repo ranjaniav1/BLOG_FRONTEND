@@ -29,9 +29,7 @@ export default function Home() {
     fetchHome();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+ 
 
   return (
     <>
@@ -45,14 +43,14 @@ export default function Home() {
       </Head>
 
       <>
-        <HeroSection hero={homeData?.hero} />
+        <HeroSection hero={homeData?.hero} loading={loading}/>
 
         <FeaturedArticles
-          featured={homeData?.featured}
+          featured={homeData?.featured} loading={loading}
         />
 
         <ArticleSection
-          articles={homeData?.articles}
+          articles={homeData?.articles} loading={loading}
         />
         <QuoteSection />
         <CategoriesSection category={homeData?.categories} />

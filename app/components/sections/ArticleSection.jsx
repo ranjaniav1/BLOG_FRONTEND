@@ -5,9 +5,12 @@ import Link from "next/link";
 import { Container } from "@mui/material";
 import ArticleCard from "../shared/ArticleCard";
 import SectionHeading from "../shared/SectionHeading";
+import { ArticleSectionSkeleton } from "../features/Skeleton";
 
-const ArticleSection = ({ articles = [] }) => {
-
+const ArticleSection = ({ articles = [], loading }) => {
+  if (loading) {
+    return <ArticleSectionSkeleton />;
+  }
 
   return (
     <Container maxWidth="xl" disableGutters>

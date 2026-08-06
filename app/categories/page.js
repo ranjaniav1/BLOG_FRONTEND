@@ -4,6 +4,7 @@ import { getCategory } from "../service/home";
 import { useEffect, useState } from "react";
 import Text from "../components/shared/Text";
 import CategoryCard from "../components/shared/CategoryCard";
+import { CategoriesSkeleton } from "../components/features/Skeleton";
 
 
 
@@ -11,6 +12,7 @@ import CategoryCard from "../components/shared/CategoryCard";
 
 export default function CategoriesPage() {
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -20,12 +22,16 @@ export default function CategoriesPage() {
                 setCategories(data);
             } catch (error) {
                 console.error("Failed to fetch categories", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchCategories();
     }, []);
-
+    if (loading) {
+        return <CategoriesSkeleton />;
+    }
     return (
         <>
             <Text type="heroLabel">Categories</Text>

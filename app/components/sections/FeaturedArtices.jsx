@@ -3,10 +3,13 @@
 import React from "react";
 import ArticleCard from "../shared/ArticleCard";
 import Text from "../shared/Text";
+import { FeaturedSkeleton } from "../features/Skeleton";
 
 
-const FeaturedArticles = ({ featured }) => {
-
+const FeaturedArticles = ({ featured, loading }) => {
+  if (loading) {
+    return <FeaturedSkeleton />;
+  }
 
 
 

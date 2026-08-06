@@ -8,10 +8,11 @@ import { useParams } from "next/navigation";
 import Breadcumps from "@/app/components/shared/Breadcrumbs";
 import ArticleCard from "@/app/components/shared/ArticleCard";
 import Text from "@/app/components/shared/Text";
-import { TravelSkeleton } from "@/app/components/features/Skeleton";
+
 
 import { useThemeContext } from "@/app/context/ThemeContext";
 import { useArticleCollection } from "@/app/utils/useArticleCollection";
+import { CategorySkeleton } from "@/app/components/features/Skeleton";
 
 const CategoryPage = () => {
   const { title } = useParams();
@@ -77,7 +78,7 @@ const CategoryPage = () => {
 
           {loading ? (
             <div className="mt-12">
-              <TravelSkeleton />
+              <CategorySkeleton />
             </div>
           ) : article.length === 0 ? (
             <div className="py-24 text-center">

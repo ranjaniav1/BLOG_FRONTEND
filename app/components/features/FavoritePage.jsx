@@ -6,10 +6,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Link from "next/link";
 
 import CustomPagination from "../shared/CustomPagination";
-import { TravelSkeleton } from "./Skeleton";
 
 import { useArticleLikes } from "@/app/hooks/useArticleLikes";
 import { useThemeContext } from "@/app/context/ThemeContext";
+import { CategorySkeleton } from "./Skeleton";
 
 const FavoritesPage = () => {
   const { favorites, loading, removeFromFavorites } = useArticleLikes(); // Custom hook managing all favorite logic
@@ -27,7 +27,7 @@ const {themeData}=useThemeContext()
     <div className="p-6 max-w-5xl mx-auto">
       {loading ? (
         <div className="flex justify-center py-10">
-          <TravelSkeleton />
+          <CategorySkeleton />
         </div>
       ) : favorites.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-10 text-gray-500">
