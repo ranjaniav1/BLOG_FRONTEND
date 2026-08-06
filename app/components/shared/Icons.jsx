@@ -16,15 +16,15 @@ const Icons = ({ icon, href, onClick, ariaLabel, sx = {} }) => {
         width: 35,
         height: 35,
         borderRadius: "20%",
-        color: themeData?.icon?.default,
+        color: themeData?.icon?.main,
         transition: "all .25s ease",
         fontSize: "small",
 
-        "&:hover": {
-          backgroundColor: "transparent",
-          color: themeData?.icon?.main,
-          transform: "translateY(-1px)",
-        },
+        // "&:hover": {
+        //   backgroundColor: "transparent",
+        //   color: themeData?.icon?.main,
+        //   transform: "translateY(-1px)",
+        // },
 
         ...sx,
       }}

@@ -60,8 +60,8 @@ export default function HeroSection({ hero, loading }) {
       </div>
       <div className="overflow-hidden rounded-[2.25rem] shadow-sm">
         <img
-          src={hero.image_url}
-          alt={hero.title}
+          src={hero?.image_url}
+          alt={hero?.title}
           width={1600}
           height={1100}
           className="aspect-[4/3] w-full object-cover"

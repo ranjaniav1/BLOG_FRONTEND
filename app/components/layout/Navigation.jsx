@@ -170,7 +170,7 @@ const Navigation = () => {
         <NavigationDrawer
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          handleDrawerClose={toggleDrawer(false)}
+          handleDrawerClose={() => setIsDrawerOpen(false)}
         />
       </Drawer>
     </header>
