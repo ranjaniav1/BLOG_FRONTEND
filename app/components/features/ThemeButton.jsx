@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Menu, MenuItem, Box } from "@mui/material";
-import { ColorLensOutlined } from "@mui/icons-material";
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { useThemeContext } from "@/app/context/ThemeContext";
 import Icons from "../shared/Icons";
 
@@ -31,17 +31,7 @@ const ThemeButton = () => {
       {/* Theme Switch Button */}
       <Icons
         onClick={handleClick}
-        icon={<ColorLensOutlined />}
-        sx={{
-
-          background: themeData?.icon?.default,
-          cursor: "pointer",
-          transition: "all 0.3s ease",
-          "&:hover": {
-            transform: "scale(1.1)",
-          },
-        }}
-        aria-label="Open theme selector"
+        icon={<LightModeOutlinedIcon />}
       />
 
       {/* Animated Dropdown Menu */}
@@ -50,22 +40,64 @@ const ThemeButton = () => {
         open={open}
         onClose={() => handleClose()}
         keepMounted
+        PaperProps={{
+          sx: {
+            mt: 1,
+            minWidth: 220,
+            p: 1,
+            borderRadius: "16px",
+            backgroundColor: themeData?.background?.navigation,
+            border: `1px solid ${themeData?.text?.border}`,
+            boxShadow: "0 12px 40px rgba(0,0,0,.08)",
+
+            "& .MuiMenuItem-root": {
+              borderRadius: "10px",
+              color: themeData?.text?.primary,
+              py: 1,
+              px: 1.5,
+              transition: "all .2s ease",
+
+              "&:hover": {
+                backgroundColor: themeData?.background?.header,
+              },
+            },
+          },
+        }}
       >
         {themes.map((theme) => {
           const isSelected = theme.name === currentThemeName;
+
           return (
             <MenuItem
               key={theme.name}
               onClick={() => handleClose(theme.name)}
               sx={{
-                backgroundColor: isSelected ? theme.background?.header : undefined,
-                color: isSelected ? theme.text?.primary : undefined,
+                backgroundColor: isSelected
+                  ? themeData?.background?.button
+                  : "transparent",
+
+                color: isSelected
+                  ? themeData?.text?.button
+                  : themeData?.text?.primary,
+
+                "&:hover": {
+                  backgroundColor: isSelected
+                    ? themeData?.background?.button
+                    : themeData?.background?.header,
+                },
               }}
             >
               <Box
-                className="w-5 h-5 rounded-full mr-2"
-                style={{ background: theme.background?.card }}
+                sx={{
+                  width: 12,
+                  height: 12,
+                  borderRadius: "50%",
+                  mr: 1.5,
+                  border: `1px solid ${themeData?.text?.border}`,
+                  background: theme.background?.button,
+                }}
               />
+
               {theme.name.replace("web-", "").replace("-", " ")}
             </MenuItem>
           );

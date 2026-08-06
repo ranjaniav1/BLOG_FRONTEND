@@ -20,6 +20,10 @@ import { useThemeContext } from "@/app/context/ThemeContext";
 import { useAuth } from "@/app/context/AuthContext";
 import Loading from "@/app/layout/loading";
 import { tabs } from "@/app/data/seriesData";
+import Text from "../Text";
+import ThemeButton from "../features/ThemeButton";
+import Button from "../Button";
+import Icons from "../shared/Icons";
 
 const Navigation = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -63,137 +67,113 @@ const Navigation = () => {
   }, []);
 
   return (
-    <Container maxWidth="xl">
-      {loading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-white/70 z-[9999]">
-          <Loading />
-        </div>
-      )}
-      <div className="flex justify-between items-center py-4" >
+    <header
+      className="sticky top-0 z-50 border-b backdrop-blur-md"
+      style={{
+        background: themeData?.background?.navigation,
+        borderColor: themeData?.text?.border,
+      }}
+    >
+      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between">
         {/* Logo */}
-        <img
-          src={settings?.headerLogo}
-          alt="logo"
-          className="h-10 w-auto object-contain cursor-pointer"
-          onClick={() => router.push("/")}
-        />
+        <Link href="/" className="shrink-0">
+          <Text type="cardTitle">
+            <span style={{ color: themeData?.text?.primary }}>
+              Still
+            </span>
+            <span style={{ color: themeData?.background?.button }}>
+              Writing
+            </span>
+          </Text>
+        </Link>
 
-        {/* Burger Menu for Mobile */}
-        <div className="md:hidden">
-          <IconButton
-            aria-label="Open Menu"
-            onClick={toggleDrawer(true)}
-            sx={{
-              border: `1px solid ${themeData?.border}`,
-              borderRadius: config?.borderRadius,
-            }}
-          >
-            <MenuIcon sx={{ color: themeData?.navText }} />
-          </IconButton>
-        </div>
-
-        {/* Drawer for Mobile */}
-        {/* <Drawer
-          anchor="right"
-          open={isDrawerOpen}
-          onClose={toggleDrawer(false)}
-        >
-          <NavigationDrawer
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            handleSearchOpen={handleSearchOpen}
-          />
-        </Drawer> */}
-
-        {/* Navigation Links */}
-        <Box className="hidden md:flex gap-8 items-center">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-10">
           {tabs.map((tab) => (
-            <NavLink
+            <Link
               key={tab.href}
               href={tab.href}
-              isActive={activeTab === tab.href}
               onClick={() => setActiveTab(tab.href)}
-              className="text-lg transition-colors duration-300"
-              style={{
-                color:
-                  activeTab === tab.href
-                    ? themeData?.background?.button // Ensure visibility
-                    : themeData?.text?.primary, // Fallback to readable color
-                fontWeight: activeTab === tab.href ? "bold" : "normal",
-              }}
+              className="transition-opacity duration-200 hover:opacity-70"
             >
-              {tab.label}
-              {tab.isNew && (
-                <span className="text-md mx-2 px-2"
-                  style={{
-                    background: themeData?.background?.button,
-                    border: `1px solid ${themeData?.text?.secondary}`,
-                    borderRadius: config?.borderRadius,
-                    color: themeData?.text?.button,
-
-                  }}
-                >
-                  New
-                </span>
-              )}
-            </NavLink>
-          ))}
-        </Box>
-
-        {/* User Section and Search */}
-        <Box className="hidden md:flex items-center gap-6">
-          {user?.fullname ? (
-            <Link
-              href={`/profile/${user.fullname}/favorites`}
-              passHref
-            >
-              <Box className="flex items-center gap-3">
-                <Avatar alt={user?.displayName} src={user?.avatar_url} />
-                <Typography
-                  variant="body1"
-                  sx={{ color: themeData?.navText, fontWeight: "bold" }}
-                >
-                  {user?.fullname || user?.email}
-                </Typography>
-              </Box>
+              <Text
+                type="nav"
+                component="span"
+                sx={{
+                  color:
+                    activeTab === tab.href
+                      ? themeData?.text?.header
+                      : themeData?.background?.button
+                }}
+              >
+                {tab.label}
+              </Text>
             </Link>
-          ) : (
-            <NavLink
-              href="/"
-              isActive={activeTab === "Login"}
-              onClick={() => {
-                setActiveTab("Login");
-                handleLoginOpen();
-              }}
-              className="px-4 py-2 rounded-lg hover:bg-opacity-80"
-              style={{
-                background: themeData?.background?.button,
-                color: themeData?.text?.button,
-              }}
-            >
-              Login
-            </NavLink>
-          )}
+          ))}
+        </nav>
 
-          <IconButton
+        {/* Right Side */}
+        <div className="hidden lg:flex items-center gap-3">
+
+          <Button
+            type="secondary"
             onClick={handleSearchOpen}
-            aria-label="Open Search"
-            sx={{
-              color: themeData?.icon?.main,
-              border: `1px solid ${themeData?.text?.secondary}`,
-              borderRadius: config?.borderRadius,
-            }}
-          >
-            <SearchIcon />
-          </IconButton>
-        </Box>
+            startIcon={<SearchIcon />}
 
-        {/* Search Dialog */}
-        <SearchDialog open={isDialogOpen} onClose={handleSearchClose} />
-        {/* Login Dialog */}
-        <LoginDialog open={isLoginDialogOpen} onClose={handleLoginClose} />
+          >
+            <>
+              Search
+              <kbd
+                style={{
+                  marginLeft: 12,
+                  padding: "2px 8px",
+                  borderRadius: 6,
+                  background: themeData?.background?.card,
+                  fontSize: "11px",
+                }}
+              >
+                ⌘K
+              </kbd>
+            </>
+          </Button>
+
+          <ThemeButton />
+
+
+        </div>
+
+        {/* Mobile */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <Icons
+            icon={<SearchIcon />}
+            onClick={handleSearchOpen}
+            ariaLabel="Search" />
+          <ThemeButton />
+          <Icons
+            icon={<MenuIcon />}
+            onClick={toggleDrawer(true)}
+            ariaLabel="Menu" />
+        </div>
+
       </div>
-    </Container>
+
+      <SearchDialog
+        open={isDialogOpen}
+        onClose={handleSearchClose}
+      />
+
+      <Drawer
+        anchor="right"
+        open={isDrawerOpen}
+        onClose={toggleDrawer(false)}
+      >
+        <NavigationDrawer
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          handleDrawerClose={toggleDrawer(false)}
+        />
+      </Drawer>
+    </header>
   );
 };
 

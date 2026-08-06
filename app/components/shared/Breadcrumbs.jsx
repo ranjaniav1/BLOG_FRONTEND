@@ -6,7 +6,7 @@ import Text from "../Text";
 
 const Breadcumps = ({ heading }) => {
   return (
-    <Breadcrumbs separator="/" sx={{my:5}}>
+    <Breadcrumbs separator="/" sx={{ pb: 5 }}>
       <Link
         href="/"
         style={{

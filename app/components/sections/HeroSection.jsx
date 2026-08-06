@@ -23,15 +23,16 @@ export default function HeroSection({ hero }) {
           mt={4}
         // maxWidth="11ch"
         >
-          {parse(hero.title)}
+          {parse(hero?.title || "")}
         </Text>
 
         <Text
+          component="div"
           type="bodyLarge"
           mt={5}
           maxWidth="34rem"
         >
-          {parse(hero.content)}
+          {parse(hero?.content || "")}
         </Text>
         <Box
           sx={{

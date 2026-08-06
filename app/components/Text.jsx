@@ -39,16 +39,6 @@ const Text = ({
 }) => {
   const { themeData } = useThemeContext();
 
-  const colors = {
-    primary: themeData?.text?.primary,
-    secondary: themeData?.text?.secondary,
-    button: themeData?.text?.button,
-    accent: themeData?.background?.button,
-    success: "#10B981",
-    danger: "#EF4444",
-    white: "#FFFFFF",
-    black: "#111827",
-  };
 
   const variants = {
     heroLabel: {
@@ -57,7 +47,7 @@ const Text = ({
       fontWeight: 500,
       textTransform: "uppercase",
       letterSpacing: "0.24em",
-      color: colors.secondary,
+      color: themeData?.text?.secondary,
     },
 
     sectionTitle: {
@@ -70,7 +60,7 @@ const Text = ({
       fontWeight: 100,
       lineHeight: 1.05,
       letterSpacing: "-0.03em",
-      color: colors.primary,
+      color: themeData?.text?.primary,
 
     },
     heroTitle: {
@@ -83,7 +73,7 @@ const Text = ({
       fontWeight: 300,
       lineHeight: 1.05,
       letterSpacing: "-0.03em",
-      color: colors.primary,
+      color: themeData?.text?.primary,
 
     },
 
@@ -93,14 +83,14 @@ const Text = ({
       fontSize: "18px",
       fontWeight: 400,
       lineHeight: 1.8,
-      color: colors.secondary,
+      color: themeData?.text?.secondary,
     },
 
     body: {
       component: "p",
       fontSize: "16px",
       lineHeight: 1.8,
-      color: colors.primary,
+      color: themeData?.text?.primary,
     },
 
     sectionEyebrow: {
@@ -109,7 +99,7 @@ const Text = ({
       fontWeight: 500,
       textTransform: "uppercase",
       letterSpacing: "0.24em",
-      color: colors.secondary,
+      color: themeData?.text?.secondary,
     },
 
     cardTitle: {
@@ -118,21 +108,30 @@ const Text = ({
       fontSize: "1.25rem",
       fontWeight: 100,
       lineHeight: 1.35,
-      color: colors.primary,
+      color: themeData?.text?.primary,
     },
 
     cardDescription: {
       component: "p",
       fontSize: "15px",
       lineHeight: 1.7,
-      color: colors.secondary,
+      color: themeData?.text?.secondary,
     },
 
     caption: {
       component: "span",
       fontSize: "13px",
       fontWeight: 500,
-      color: colors.secondary,
+      color: themeData?.text?.secondary,
+    },
+    nav: {
+      component: "span",
+      fontFamily: "var(--font-sans)",
+      fontSize: "14px",
+      fontWeight: 400,
+      lineHeight: 1.5,
+      letterSpacing: "0",
+      color: themeData?.text?.header,
     },
   };
 
@@ -146,9 +145,8 @@ const Text = ({
         fontFamily: preset.fontFamily,
         fontSize: size || preset.fontSize,
         fontWeight: weight || preset.fontWeight,
-        color: color
-          ? (colors[color] || color)
-          : preset.color,
+        color: preset.color,
+
         textAlign: align,
         textTransform: transform ?? preset.textTransform,
         letterSpacing: spacing ?? preset.letterSpacing,

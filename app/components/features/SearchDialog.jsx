@@ -3,153 +3,150 @@
 import React, { useState } from "react";
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   IconButton,
   CircularProgress,
   InputBase,
-  Button,
 } from "@mui/material";
-import { Close as CloseIcon, Search as SearchIcon } from "@mui/icons-material";
+import {
+  Close as CloseIcon,
+  Search as SearchIcon,
+} from "@mui/icons-material";
 import Link from "next/link";
-import Card4 from "../cards/Card4";
+
 import { useThemeContext } from "@/app/context/ThemeContext";
 import { useSearch } from "@/app/utils/useSearch";
+import Text from "../Text";
+import Card5 from "../cards/Card5";
+import Icons from "../shared/Icons";
 
-const SearchDialog = ({ open, onClose }) => {
+export default function SearchDialog({ open, onClose }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searched, setSearched] = useState(false);
+
   const { news, loading } = useSearch(searchQuery);
   const { themeData } = useThemeContext();
 
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
-    setSearched(true);
-  };
+
+
+
 
   return (
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="md"
       fullWidth
-      sx={{
-        "& .MuiPaper-root": {
-          backgroundColor: themeData?.background?.body,
-          color: themeData?.text?.primary,
+      maxWidth="md"
+      PaperProps={{
+        sx: {
+          borderRadius: "24px",
+          background: themeData?.background?.body,
+          maxHeight: "85vh",
+          boxShadow: "0 30px 80px rgba(0,0,0,.12)",
         },
       }}
     >
-      <DialogTitle
-        sx={{
-          backgroundColor: themeData?.background?.header,
-          color: themeData?.text?.heading,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderBottom: `1px solid ${themeData?.text?.border}`,
-        }}
-      >
-        <span style={{ fontSize: "1.25rem", fontWeight: 600 }}>Search News</span>
-        <IconButton
-          onClick={onClose}
-          sx={{
-            color: themeData?.icon?.default,
-            "&:hover": { color: themeData?.icon?.main },
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
+      <DialogContent sx={{ p: 4 }}>
+        {/* Search Bar */}
 
-      <DialogContent dividers sx={{ background: themeData?.background?.body }}>
-        {/* Search Input Area */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            backgroundColor: themeData?.background?.card,
+            gap: 12,
             border: `1px solid ${themeData?.text?.border}`,
-            borderRadius: 8,
-            padding: "0.5rem",
+            borderRadius: 18,
+            padding: "12px 18px",
+            background: themeData?.background?.card,
           }}
         >
+          <SearchIcon
+            sx={{
+              color: themeData?.icon?.default,
+            }}
+          />
+
           <InputBase
             autoFocus
             fullWidth
-            placeholder="Enter your search query..."
+            placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             sx={{
-              px: 1,
               color: themeData?.text?.primary,
               fontSize: "1rem",
             }}
           />
-          <Button
-            onClick={handleSearch}
-            variant="contained"
-            disabled={loading}
-            sx={{
-              backgroundColor: themeData?.background?.button,
-              color: themeData?.text?.button,
-              minWidth: "40px",
-              "&:hover": {
-                backgroundColor: themeData?.icon?.main,
-              },
-            }}
-          >
-            <SearchIcon />
-          </Button>
+          <Icons icon={<CloseIcon />} onClick={onClose}/>
         </div>
 
-        {/* Loader */}
-        {loading && searched ? (
+        {searchQuery.trim() === "" && (
+          <div
+            style={{
+              padding: "60px 0",
+              textAlign: "center",
+            }}
+          >
+            <Text
+              type="bodyLarge"
+              sx={{
+                maxWidth: 420,
+                mx: "auto",
+              }}
+            >
+              Find articles by title, category, or anything you've written
+              about.
+            </Text>
+          </div>
+        )}
+
+        {/* Loading */}
+
+        {loading && searchQuery.trim() !== "" && news.length === 0 && (
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
-              height: "12rem",
+              padding: "60px",
             }}
           >
-            <CircularProgress sx={{ color: themeData?.icon?.main }} />
+            <CircularProgress />
           </div>
-        ) : searched && news.length === 0 ? (
-          <p
-            style={{
-              textAlign: "center",
-              color: themeData?.text?.secondary,
-              marginTop: "1rem",
-            }}
-          >
-            No results found.
-          </p>
-        ) : (
+        )}
+
+        {/* No Results */}
+
+        {!loading && news.length === 0 && (
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "1rem",
-              marginTop: "1rem",
+              textAlign: "center",
+              padding: "60px 0",
             }}
           >
+            <Text type="cardTitle">
+              No articles found
+            </Text>
+
+            <Text type="bodyLarge" mt={2}>
+              Try another keyword.
+            </Text>
+          </div>
+        )}
+
+        {/* Results */}
+
+        {!loading && news.length > 0 && (
+          <div style={{ marginTop: 24 }}>
             {news.map((article) => (
-              <Link key={article._id} href={`/blog/${article.slug}`} passHref>
-                <Card4
-                  article={article}
-                  title={article.title}
-                  category={article.category?.name}
-                  imageUrl={article.image_url}
-                />
-              </Link>
+              <Card5
+                key={article._id}
+                article={article}
+                onClick={onClose}
+              />
             ))}
           </div>
         )}
       </DialogContent>
     </Dialog>
   );
-};
-
-export default SearchDialog;
+}

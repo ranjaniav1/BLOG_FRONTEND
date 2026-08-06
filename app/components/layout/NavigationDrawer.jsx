@@ -24,6 +24,7 @@ import LoginDialog from "@/app/Models/Login";
 import { logoutUser } from "@/app/utils/auth";
 import { useAuth } from "@/app/context/AuthContext";
 import { tabs } from "@/app/data/seriesData";
+import Text from "../Text";
 
 const NavigationDrawer = ({
   activeTab,
@@ -71,22 +72,27 @@ const NavigationDrawer = ({
         </ListItem>
 
         {/* Navigation Links */}
-        {tabs.map(({ name, href }) => (
-          <ListItem key={name} className="px-2">
-            <NavLink
-              href={href}
-              isActive={activeTab === name.toLowerCase()}
-              onClick={() => {
-                setActiveTab(name.toLowerCase());
-                handleDrawerClose(); // Close drawer on click
-              }}
-              className={`block w-full text-gray-900 font-semibold text-lg py-2 px-4 rounded-lg transition-all hover:text-red-500 hover:bg-gray-100 ${activeTab === name.toLowerCase()
-                ? "bg-red-100 text-red-500"
-                : ""
-                }`}
+        {tabs.map(({ tab, href }) => (
+          <ListItem key={href} className="px-2">
+            <Link
+              key={tab.href}
+              href={tab.href}
+              onClick={() => setActiveTab(tab.href)}
+              className="transition-opacity duration-200 hover:opacity-70"
             >
-              {label}
-            </NavLink>
+              <Text
+                type="nav"
+                component="span"
+                sx={{
+                  color:
+                    activeTab === tab.href
+                      ? themeData?.text?.header
+                      : themeData?.background?.button
+                }}
+              >
+                {tab.label}
+              </Text>
+            </Link>
           </ListItem>
         ))}
 

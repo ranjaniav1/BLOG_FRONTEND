@@ -21,7 +21,7 @@ const SectionHeading = ({
         <Box
             id={id}
             sx={{
-                borderBottom: `1px solid ${themeData?.border}`,
+                borderBottom: `1px solid ${themeData?.text?.border}`, mb: 5, pb: 5,
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",

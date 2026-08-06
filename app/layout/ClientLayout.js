@@ -13,13 +13,16 @@ export default function ClientLayout({ children }) {
   useEffect(() => { }, [themeData])
 
   return (
-    <div style={{ background: themeData?.background?.body }} className="flex flex-col">
-      <Weather />
-      <Navigation />
-      {/* <Header /> */}
-      <main className="flex-1 ">
-        {children}
-      </main>
+    <div style={{ background: themeData?.background?.body }} className=" flex flex-col">
+      <section className="mx-auto w-full max-w-6xl px-5 sm:px-8">
+        <Weather />
+
+        <Navigation />
+        {/* <Header /> */}
+        <main className="pt-12 pb-20 sm:pt-24">
+          {children}
+        </main>
+      </section>
       <Footer />
     </div>
   );

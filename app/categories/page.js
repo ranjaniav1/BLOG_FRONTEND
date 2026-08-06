@@ -27,7 +27,7 @@ export default function CategoriesPage() {
     }, []);
 
     return (
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <>
             <Text type="heroLabel">Categories</Text>
 
             <Text type="sectionTitle"
@@ -45,6 +45,6 @@ export default function CategoriesPage() {
 
                 ))}
             </div>
-        </div>
+        </>
     );
 }

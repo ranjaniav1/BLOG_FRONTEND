@@ -19,21 +19,27 @@ const Button = ({
   sx = {},
   ...props
 }) => {
-  const { themeData, config } = useThemeContext();
+  const { themeData } = useThemeContext();
 
   const presets = {
     primary: {
       variant: "contained",
       bg: themeData?.background?.button,
       color: themeData?.text?.button,
-      border: themeData?.background?.button,
+      border: themeData?.background?.border,
     },
 
     secondary: {
       variant: "outlined",
       bg: "transparent",
       color: themeData?.text?.primary,
-      border: themeData?.background?.button,
+      height: 40,
+      px: 2.5,
+      minWidth: "auto",
+      border: themeData?.text?.border,
+      color: themeData?.text?.secondary,
+      fontSize: "14px",
+      fontWeight: 100,
     },
 
     ghost: {
@@ -42,19 +48,7 @@ const Button = ({
       color: themeData?.text?.primary,
     },
 
-    success: {
-      variant: "contained",
-      bg: "#10B981",
-      color: "#fff",
-      border: "#10B981",
-    },
 
-    danger: {
-      variant: "contained",
-      bg: "#EF4444",
-      color: "#fff",
-      border: "#EF4444",
-    },
   };
 
   const current = presets[type] || presets.primary;
@@ -68,12 +62,15 @@ const Button = ({
       startIcon={startIcon}
       endIcon={endIcon}
       sx={{
-        px: 4,
-        py: 1.5,
-        fontSize: "15px",
-        fontWeight: 600,
+
+        px: current.px ?? 4,
+        py: current.py ?? 1.5,
+        height: current.height,
+        minWidth: current.minWidth,
+        fontSize: current.fontSize ?? "15px",
+        fontWeight: current.fontWeight ?? 600,
         textTransform: "none",
-        borderRadius: "20px",
+        borderRadius: current.borderRadius ?? "20px",
 
         ...(current.variant === "contained" && {
           backgroundColor: current.bg,
@@ -105,12 +102,14 @@ const Button = ({
       }}
       {...props}
     >
-      {loading ? (
-        <CircularProgress size={18} color="inherit" />
-      ) : (
-        children
-      )}
-    </MuiButton>
+      {
+        loading ? (
+          <CircularProgress size={18} color="inherit" />
+        ) : (
+          children
+        )
+      }
+    </MuiButton >
   );
 };
 

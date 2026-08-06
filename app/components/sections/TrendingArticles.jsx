@@ -16,7 +16,7 @@ const TrendingArticles = ({ articles = [] }) => {
         title="Recently written"
         to="/categories"
         linkLabel="All articles"
-      /><hr />
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
         {articles.map((article) => (
           <Link key={article._id} href={`/blog/${article.slug}`}>

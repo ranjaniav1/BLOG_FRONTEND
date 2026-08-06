@@ -1,53 +1,92 @@
+"use client";
+
 import React from "react";
-import { useArticleLikes } from "@/app/hooks/useArticleLikes";
-import FavoriteButton from "@/app/components/features/FavouriteButton";
+import Link from "next/link";
+import Text from "../Text";
+import FavoriteButton from "../features/FavouriteButton";
 import { useThemeContext } from "@/app/context/ThemeContext";
-import { truncateText } from "@/app/utils/textUtils";
+import { useArticleLikes } from "@/app/hooks/useArticleLikes";
 
-const Card5 = ({ category, title, imageUrl, article, className = "" }) => {
+const Card5 = ({ article, onClick }) => {
   const { themeData } = useThemeContext();
-  const { isArticleFavorite, toggleFavorite, loading } = useArticleLikes(article?._id);
 
-  if (loading) return <div>Loading...</div>;
+  const { isArticleFavorite, toggleFavorite, loading } =
+    useArticleLikes(article?._id);
+
+  const formatDate = (date) =>
+    new Date(date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+
+  if (loading) return null;
 
   return (
-    <div className={`relative overflow-hidden group`}>
-      {/* ✅ Image Container with fixed aspect ratio */}
-      <div className={`relative w-full aspect-[16/9] ${className} rounded overflow-hidden`}>
-        <img
-          src={imageUrl || "/placeholder.jpg"}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+    <Link
+      href={`/blog/${article.slug}`}
+      onClick={onClick}
+      className="block transition-opacity duration-200 hover:opacity-90"
+      style={{ textDecoration: "none" }}
+    >
+      <div
+        className="flex gap-4 py-5"
+        style={{
+          borderBottom: `1px solid ${themeData?.text?.border}`,
+        }}
+      >
+        {/* Image */}
+        <div className="relative flex-shrink-0">
+          <img
+            src={article.image_url || "/placeholder.jpg"}
+            alt={article.title}
+            className="h-[76px] w-[110px] rounded-xl object-cover"
+          />
 
-        {/* Favorite Button */}
-        <FavoriteButton
-          isFavorite={isArticleFavorite(article?._id)}
-          toggleFavorite={() => toggleFavorite(article?._id)}
-        />
+          <FavoriteButton
+            isFavorite={isArticleFavorite(article?._id)}
+            toggleFavorite={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleFavorite(article?._id);
+            }}
+          />
+        </div>
 
-        {/* Category Label */}
-        {category && (
-          <div
-            className="absolute top-3 left-3 px-2 py-1 rounded-md"
-            style={{
-              backgroundColor: themeData?.background?.button,
-              color: themeData?.text?.button,
+        {/* Content */}
+        <div className="flex flex-1 flex-col justify-center">
+          <Text
+            type="heroLabel"
+            sx={{
+              color: themeData?.background?.button,
+              mb: 0.5,
+              letterSpacing: "0.18em",
             }}
           >
-            <p className="text-xs md:text-sm font-semibold">{category}</p>
-          </div>
-        )}
-      </div>
+            {article.category?.slug?.replaceAll("-", " ").toUpperCase()}
+          </Text>
 
-      {/* Title */}
-      <h2
-        className="mt-2 text-sm md:text-lg font-semibold group-hover:text-red-500 transition-colors duration-300 line-clamp-2"
-        style={{ color: themeData?.text?.primary }}
-      >
-        {truncateText(title, 60)}
-      </h2>
-    </div>
+          <Text
+            type="cardTitle"
+            sx={{
+              lineHeight: 1.35,
+            }}
+          >
+            {article.title}
+          </Text>
+
+          <Text
+            type="caption"
+            sx={{
+              mt: 1,
+              color: themeData?.text?.secondary,
+            }}
+          >
+            {formatDate(article.created_at)}
+          </Text>
+        </div>
+      </div>
+    </Link>
   );
 };
 

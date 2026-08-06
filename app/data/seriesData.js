@@ -1,3 +1,6 @@
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import GitHubIcon from "@mui/icons-material/GitHub";
 export const pythonBasics = [
   {
     title: "What is Python",
@@ -76,5 +79,23 @@ export const sections = [
     eyebrow: "DAILY REFLECTIONS",
     title: "Small moments worth remembering",
     linkLabel: "See reflections",
+  },
+];
+
+export const socialIcons = [
+  {
+    href: "https://github.com/ranjaniav1/",
+    label: "GitHub",
+    icon: <GitHubIcon sx={{ fontSize: 20 }} />,
+  },
+  {
+    href: "https://www.linkedin.com/in/varsaniranjani",
+    label: "LinkedIn",
+    icon: <LinkedInIcon sx={{ fontSize: 20 }} />,
+  },
+  {
+    href: "https://www.instagram.com/varsaniranjani/",
+    label: "Instagram",
+    icon: <InstagramIcon sx={{ fontSize: 20 }} />,
   },
 ];

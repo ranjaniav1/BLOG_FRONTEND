@@ -11,7 +11,7 @@ const FeaturedArticles = ({ featured }) => {
 
 
   return (
-    <section aria-labelledby="featured" className="pt-16 pb-20  sm:pt-24">
+    <section aria-labelledby="featured" className="pt-16 pb-20  sm:pt-24" >
       <Text type="heroLabel">
         Featured story
       </Text>
@@ -21,7 +21,7 @@ const FeaturedArticles = ({ featured }) => {
       >
         The one I'd hand you first
       </Text>
-      <hr />
+     
       <div className="mt-10">
         {
           featured.map((article) => (

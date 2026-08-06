@@ -45,8 +45,7 @@ export default function Home() {
         />
       </Head>
 
-      <section className="mx-auto max-w-6xl px-5 pt-16 pb-20 sm:px-8 sm:pt-24">
-
+      <>
         <HeroSection hero={homeData?.hero} />
 
         <FeaturedArticles
@@ -54,15 +53,15 @@ export default function Home() {
         />
 
 
-        
-      
+
+
         <TrendingArticles
           articles={homeData?.articles}
         />
         <QuoteSection />
         <CategoriesSection category={homeData?.categories} />
+      </>
 
-      </section>
     </>
   );
 }

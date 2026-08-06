@@ -4,6 +4,7 @@ import React from "react";
 import Text from "../Text";
 import { Box } from "@mui/material";
 import NewsIcons from "./NewsIcons";
+import { formatDate } from "@/app/utils/formateDate";
 
 const NewsHeader = ({ article }) => {
   return (
@@ -32,7 +33,6 @@ const NewsHeader = ({ article }) => {
       <Box
         sx={{
           my: 5,
-          py: 3,
           borderTop: "1px solid",
           borderBottom: "1px solid",
           borderColor: "divider",
@@ -49,7 +49,7 @@ const NewsHeader = ({ article }) => {
         <Text type="body">•</Text>
 
         <Text type="body">
-          {new Date(article.published_at).toLocaleDateString()}
+          {formatDate(article.published_at)}
         </Text>
 
         <Text type="body">•</Text>
