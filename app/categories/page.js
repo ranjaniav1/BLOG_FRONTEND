@@ -18,7 +18,6 @@ export default function CategoriesPage() {
         const fetchCategories = async () => {
             try {
                 const data = await getCategory();
-                console.log(data)
                 setCategories(data);
             } catch (error) {
                 console.error("Failed to fetch categories", error);

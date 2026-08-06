@@ -13,7 +13,7 @@ export const useSettings = () => {
         const fetchSettings = async () => {
             try {
                 const response = await getSettings();
-                setSettings(response.data.webSettings);
+                setSettings(response?.data?.webSettings);
              
             } catch (error) {
                 console.log("errorr", error)

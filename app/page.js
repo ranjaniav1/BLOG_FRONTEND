@@ -19,7 +19,6 @@ export default function Home() {
     const fetchHome = async () => {
       try {
         const data = await getHome();
-        console.log(data)
         setHomeData(data);
       } finally {
         setLoading(false);

@@ -10,7 +10,6 @@ export const useSearch = (slug) => {
     const fetchSearchNews = async () => {
         try {
             const response = await getSearch(slug);
-            console.log("response search", response.articles)
             setNews(response.articles)
         } catch (error) {
             console.error("Error fetching categories:", error);
