@@ -2,12 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
-import Text from "../Text";
+import Text from "./Text";
 import FavoriteButton from "../features/FavouriteButton";
 import { useThemeContext } from "@/app/context/ThemeContext";
 import { useArticleLikes } from "@/app/hooks/useArticleLikes";
 
-const Card5 = ({ article, onClick }) => {
+const SearchArticleCard = ({ article, onClick }) => {
   const { themeData } = useThemeContext();
 
   const { isArticleFavorite, toggleFavorite, loading } =
@@ -90,4 +90,4 @@ const Card5 = ({ article, onClick }) => {
   );
 };
 
-export default Card5;
+export default SearchArticleCard;

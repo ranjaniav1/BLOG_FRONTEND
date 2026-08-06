@@ -4,8 +4,8 @@ import {
   Box,
 } from "@mui/material";
 
-import Text from "../Text";
-import Button from "../Button";
+import Text from "../shared/Text";
+import Button from "../shared/Button";
 import Link from "next/link";
 import parse from "html-react-parser";
 export default function HeroSection({ hero }) {

@@ -5,11 +5,10 @@ import Head from "next/head";
 
 import HeroSection from "./components/sections/HeroSection";
 import FeaturedArticles from "./components/sections/FeaturedArtices";
-import TrendingArticles from "./components/sections/TrendingArticles";
-import SectionHeading from "./components/SectionHeading";
 import { getHome } from "./service/home";
-import QuoteSection from "./components/QuoteSection";
-import CategoriesSection from "./components/CategoriesSection";
+import QuoteSection from "./components/sections/QuoteSection";
+import CategoriesSection from "./components/sections/CategoriesSection";
+import ArticleSection from "./components/sections/ArticleSection";
 
 
 export default function Home() {
@@ -52,10 +51,7 @@ export default function Home() {
           featured={homeData?.featured}
         />
 
-
-
-
-        <TrendingArticles
+        <ArticleSection
           articles={homeData?.articles}
         />
         <QuoteSection />

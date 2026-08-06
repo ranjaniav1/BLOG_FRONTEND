@@ -20,9 +20,9 @@ import { useThemeContext } from "@/app/context/ThemeContext";
 import { useAuth } from "@/app/context/AuthContext";
 import Loading from "@/app/layout/loading";
 import { tabs } from "@/app/data/seriesData";
-import Text from "../Text";
+import Text from "../shared/Text";
 import ThemeButton from "../features/ThemeButton";
-import Button from "../Button";
+import Button from "../shared/Button";
 import Icons from "../shared/Icons";
 
 const Navigation = () => {

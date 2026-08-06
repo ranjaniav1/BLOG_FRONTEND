@@ -3,7 +3,7 @@
 import Link from "next/link";
 import parse from "html-react-parser";
 import Text from "./Text";
-import { formatDate } from "../utils/formateDate";
+import { formatDate } from "../../utils/formateDate";
 export default function ArticleCard({
   article,
   size = "sm",

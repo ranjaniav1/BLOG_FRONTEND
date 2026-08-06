@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Breadcrumbs } from "@mui/material";
-import Text from "../Text";
+import Text from "./Text";
 
 const Breadcumps = ({ heading }) => {
   return (

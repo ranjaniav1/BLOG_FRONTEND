@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Text from "../Text";
+import Text from "../shared/Text";
 import { Box } from "@mui/material";
 import NewsIcons from "./NewsIcons";
 import { formatDate } from "@/app/utils/formateDate";

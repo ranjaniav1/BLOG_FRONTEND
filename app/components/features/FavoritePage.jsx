@@ -5,7 +5,6 @@ import { Typography, Grid, IconButton, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Link from "next/link";
 
-import Card1 from "../cards/Card1";
 import CustomPagination from "../shared/CustomPagination";
 import { TravelSkeleton } from "./Skeleton";
 
@@ -44,14 +43,15 @@ const {themeData}=useThemeContext()
               <Grid item xs={12} sm={6} md={4} lg={3} key={article?._id}>
                 <div className="relative h-full">
                   <Link href={`/blog/${article.slug}`} className="block">
-                    <Card1
+                  <ArticleCard article={article}/>
+                    {/* <Card1
                       article={article}
                       category={article.category?.name}
                       imageUrl={article.image_url}
                       title={article.title}
                       height="250px"
                       showFavourite={false}
-                    />
+                    /> */}
                   </Link>
 
                   {/* Delete icon outside the link */}

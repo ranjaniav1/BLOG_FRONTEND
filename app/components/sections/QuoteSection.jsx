@@ -1,5 +1,5 @@
 import React from 'react'
-import Text from './Text'
+import Text from '../shared/Text'
 
 const QuoteSection = () => {
     return (
@@ -11,7 +11,7 @@ const QuoteSection = () => {
 
             <Text
                 type="cardTitle"
-mt={4}
+                mt={4}
                 align='center'
             >
                 “You do not have to be finished to be worth listening to. Tell me about the middle.”
@@ -19,7 +19,7 @@ mt={4}
 
             <Text
                 type="bodyLarge"
-align='center'
+                align='center'
                 mt={4}
 
             >

@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import ArticleCard from "../ArticleCard";
-import Text from "../Text";
+import ArticleCard from "../shared/ArticleCard";
+import Text from "../shared/Text";
 
 
 const FeaturedArticles = ({ featured }) => {
@@ -21,7 +21,7 @@ const FeaturedArticles = ({ featured }) => {
       >
         The one I'd hand you first
       </Text>
-     
+
       <div className="mt-10">
         {
           featured.map((article) => (

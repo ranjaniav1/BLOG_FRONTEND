@@ -3,10 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "@mui/material";
-import ArticleCard from "../ArticleCard";
-import SectionHeading from "../SectionHeading";
+import ArticleCard from "../shared/ArticleCard";
+import SectionHeading from "../shared/SectionHeading";
 
-const TrendingArticles = ({ articles = [] }) => {
+const ArticleSection = ({ articles = [] }) => {
 
 
   return (
@@ -28,4 +28,4 @@ const TrendingArticles = ({ articles = [] }) => {
   );
 };
 
-export default TrendingArticles;
+export default ArticleSection;

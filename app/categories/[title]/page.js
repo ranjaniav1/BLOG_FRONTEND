@@ -6,8 +6,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 import Breadcumps from "@/app/components/shared/Breadcrumbs";
-import ArticleCard from "@/app/components/ArticleCard";
-import Text from "@/app/components/Text";
+import ArticleCard from "@/app/components/shared/ArticleCard";
+import Text from "@/app/components/shared/Text";
 import { TravelSkeleton } from "@/app/components/features/Skeleton";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
@@ -41,7 +41,7 @@ const CategoryPage = () => {
         />
       </Head>
 
-      <Breadcumps heading={title}  />
+      <Breadcumps heading={title} />
 
       <section
         style={{

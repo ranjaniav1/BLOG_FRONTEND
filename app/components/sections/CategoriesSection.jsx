@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import SectionHeading from "./SectionHeading";
-import { useThemeContext } from "../context/ThemeContext";
+import SectionHeading from "../shared/SectionHeading";
+import { useThemeContext } from "../../context/ThemeContext";
 
 const CategoriesSection = ({ category = [] }) => {
     const { themeData } = useThemeContext();

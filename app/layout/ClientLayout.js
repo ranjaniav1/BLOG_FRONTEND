@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import Weather from "../components/layout/Weather";
 import Navigation from "../components/layout/Navigation";
-import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { useThemeContext } from "../context/ThemeContext";
 
@@ -18,7 +17,6 @@ export default function ClientLayout({ children }) {
         <Weather />
 
         <Navigation />
-        {/* <Header /> */}
         <main className="pt-12 pb-20 sm:pt-24">
           {children}
         </main>

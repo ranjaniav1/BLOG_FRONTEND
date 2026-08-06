@@ -16,9 +16,9 @@ import Link from "next/link";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
 import { useSearch } from "@/app/utils/useSearch";
-import Text from "../Text";
-import Card5 from "../cards/Card5";
+import Text from "../shared/Text";
 import Icons from "../shared/Icons";
+import SearchArticleCard from "../shared/SearchArticleCard";
 
 export default function SearchDialog({ open, onClose }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -77,7 +77,7 @@ export default function SearchDialog({ open, onClose }) {
               fontSize: "1rem",
             }}
           />
-          <Icons icon={<CloseIcon />} onClick={onClose}/>
+          <Icons icon={<CloseIcon />} onClick={onClose} />
         </div>
 
         {searchQuery.trim() === "" && (
@@ -138,7 +138,7 @@ export default function SearchDialog({ open, onClose }) {
         {!loading && news.length > 0 && (
           <div style={{ marginTop: 24 }}>
             {news.map((article) => (
-              <Card5
+              <SearchArticleCard
                 key={article._id}
                 article={article}
                 onClick={onClose}

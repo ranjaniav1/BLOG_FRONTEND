@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useThemeContext } from "@/app/context/ThemeContext";
-import Text from "../Text";
+import Text from "../shared/Text";
 import Icons from "../shared/Icons";
 import { sections, socialIcons, tabs } from "@/app/data/seriesData";
 

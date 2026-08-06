@@ -24,7 +24,7 @@ import LoginDialog from "@/app/Models/Login";
 import { logoutUser } from "@/app/utils/auth";
 import { useAuth } from "@/app/context/AuthContext";
 import { tabs } from "@/app/data/seriesData";
-import Text from "../Text";
+import Text from "../shared/Text";
 
 const NavigationDrawer = ({
   activeTab,

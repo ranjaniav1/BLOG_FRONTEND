@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { getCategory } from "../service/home";
 import { useEffect, useState } from "react";
-import Text from "../components/Text";
-import CategoryCard from "../components/CategoryCard";
+import Text from "../components/shared/Text";
+import CategoryCard from "../components/shared/CategoryCard";
 
 
 

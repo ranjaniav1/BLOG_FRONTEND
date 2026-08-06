@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import SectionHeading from "../SectionHeading";
-import ArticleCard from "../ArticleCard";
+import SectionHeading from "../shared/SectionHeading";
+import ArticleCard from "../shared/ArticleCard";
 
 const RelatedNews = ({ articles = [] }) => {
   if (!articles.length) return null;

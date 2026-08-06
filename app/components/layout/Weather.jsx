@@ -4,7 +4,7 @@ import React from "react";
 import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
-import Text from "../Text";
+import Text from "../shared/Text";
 import Icons from "../shared/Icons";
 import { socialIcons } from "@/app/data/seriesData";
 
