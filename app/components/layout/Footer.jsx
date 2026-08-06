@@ -24,8 +24,8 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block">
               <Text type="cardTitle">
-                <span style={{ color: themeData.text.primary }}>Still</span>{" "}
-                <span style={{ color: themeData.background.button }}>Writing</span>
+                <span style={{ color: themeData?.text?.primary }}>Still</span>{" "}
+                <span style={{ color: themeData?.background?.button }}>Writing</span>
               </Text>
             </Link>
 
@@ -35,7 +35,7 @@ export default function Footer() {
               mt={3}
               sx={{
                 maxWidth: 340,
-                color: themeData.text.secondary,
+                color: themeData?.text?.secondary,
               }}
             >
               A quiet place for life lessons, honest reflections and everything I'm

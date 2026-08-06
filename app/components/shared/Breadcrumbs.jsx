@@ -34,7 +34,7 @@ const Breadcumps = ({ heading }) => {
         <Text type="body">Articles</Text>
       </Link>
 
-      <Text type="body">{heading.category.name}</Text>
+      <Text type="body">{heading?.category?.name || heading}</Text>
     </Breadcrumbs>
   );
 };
