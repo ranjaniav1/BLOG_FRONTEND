@@ -27,6 +27,11 @@ const Button = ({
       bg: themeData?.background?.button,
       color: themeData?.text?.button,
       border: themeData?.background?.border,
+      height: 40,
+      px: 2.5,
+      minWidth: "auto",
+      fontSize: "14px",
+      fontWeight: 200,
     },
 
     secondary: {
