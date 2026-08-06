@@ -4,7 +4,7 @@ import { getCategory } from "../service/home";
 import { useEffect, useState } from "react";
 import Text from "../components/shared/Text";
 import CategoryCard from "../components/shared/CategoryCard";
-import { CategoriesSkeleton } from "../components/features/Skeleton";
+import { CategorySkeleton } from "../components/features/Skeleton";
 
 
 
@@ -30,7 +30,7 @@ export default function CategoriesPage() {
         fetchCategories();
     }, []);
     if (loading) {
-        return <CategoriesSkeleton />;
+        return <CategorySkeleton />;
     }
     return (
         <>
