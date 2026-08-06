@@ -1,92 +1,167 @@
 "use client";
-import React from "react";
-import { Typography, Divider } from "@mui/material";
+
 import Link from "next/link";
 import { useThemeContext } from "@/app/context/ThemeContext";
-import {
-  Instagram,
-  YouTube,
-  LinkedIn,
-} from "@mui/icons-material";
+import Text from "../Text";
+import Icons from "../shared/Icons";
+import { sections, socialIcons, tabs } from "@/app/data/seriesData";
 
-const Footer = () => {
-  const { config, settings } = useThemeContext();
+
+
+export default function Footer() {
+  const { themeData } = useThemeContext();
 
   return (
-    <footer className="bg-gray-900 text-white pt-12 pb-6">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        {/* Logo + About */}
-        <div>
-          <img
-            src={settings?.footerLogo || "/logo.png"}
-            alt="logo"
-            className="h-10 w-auto object-contain cursor-pointer mb-4"
-            onClick={() => window.location.href = "/"}
-          />
-          <Typography variant="body2" className="text-sm leading-relaxed text-gray-300">
-            Varsani Tech Blog is a developer-focused platform sharing insights on
-            Frontend, Backend, APIs, Authentication, DevOps, and modern software engineering.
-          </Typography>
-        </div>
+    <footer
+      style={{
+        background: themeData?.background?.body,
+        borderTop: `1px solid ${themeData?.text?.border}`,
+      }}
+    >
+      <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
+        <div className="grid grid-cols-1 gap-16 md:grid-cols-[2fr_1fr_1fr]">
+          {/* Brand */}
+          <div>
+            <Link href="/" className="inline-block">
+              <Text type="cardTitle">
+                <span style={{ color: themeData.text.primary }}>Still</span>{" "}
+                <span style={{ color: themeData.background.button }}>Writing</span>
+              </Text>
+            </Link>
 
-        {/* Quick Links */}
-        <div>
-          <Typography variant="h6" className="text-lg font-semibold mb-4">Quick Links</Typography>
-          <Divider className="bg-gray-600 mb-2" />
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/categories/featured">Frontend Developement</Link></li>
-            <li><Link href="/categories/career-communication-learning">Learning News</Link></li>
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-          </ul>
-        </div>
+            <Text
+              type="nav"
+              component={"div"}
+              mt={3}
+              sx={{
+                maxWidth: 340,
+                color: themeData.text.secondary,
+              }}
+            >
+              A quiet place for life lessons, honest reflections and everything I'm
+              still learning. Written by Ranjani Varsani.
+            </Text>
 
-        {/* Top Categories */}
-        <div>
-          <Typography variant="h6" className="text-lg font-semibold mb-4">Top Categories</Typography>
-          <Divider className="bg-gray-600 mb-2" />
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li><Link href="/categories/backend-developement">Backend Developement</Link></li>
-            <li><Link href="/categories/artificial-intelligent">AI & AL</Link></li>
-            <li><Link href="/categories/mobile-development">Mobile Development</Link></li>
-            <li><Link href="/categories/programming-fundamental">Programming Fundamental</Link></li>
-            <li><Link href="/categories/devops-tools">DevOps</Link></li>
-          </ul>
-        </div>
+            <div className="mt-6 flex items-center gap-1">
+              {socialIcons.map((item) => (
+                <Icons
+                  key={item.href}
+                  href={item.href}
+                  icon={item.icon}
+                  ariaLabel={item.ariaLabel}
+                />
+              ))}
+            </div>
+          </div>
 
-        {/* Newsletter + Social */}
-        <div>
-          <Typography variant="h6" className="text-lg font-semibold mb-4">Connect with Us</Typography>
-          <Divider className="bg-gray-600 mb-4" />
-          <Typography variant="body2" className="text-sm text-gray-400 mb-4">
-            Follow us on social media for daily updates and trending stories.
-          </Typography>
-          <div className="flex gap-4 text-white">
-            <a href="https://instagram.com/varsaniranjani" target="_blank" rel="noreferrer">
-              <Instagram className="hover:text-pink-400 transition" />
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer">
-              <YouTube className="hover:text-red-500 transition" />
-            </a>
-            <a href="https://linkedlin.com/varsaniranjani" target="_blank" rel="noreferrer">
-              <LinkedIn className="hover:text-blue-500 transition" />
-            </a>
+          {/* Read */}
+          <div>
+            <Text type="heroLabel" mb={3}>
+              Read
+            </Text>
+
+            <div className="flex flex-col gap-3">
+              {tabs
+                .filter((item) => item.label !== "Categories")
+                .map((item) => (
+                  <Link key={item.href} href={item.href}>
+                    <Text
+                      type="caption"
+                      sx={{
+                        "&:hover": {
+                          color: themeData.background.button,
+                        },
+                      }}
+                    >
+                      {item.label}
+                    </Text>
+                  </Link>
+                ))}
+            </div>
+          </div>
+
+          {/* Topics */}
+          <div>
+            <Text type="heroLabel" mb={3}>
+              Topics
+            </Text>
+
+            <div className="flex flex-col gap-3">
+              {sections.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/categories/${item.slug}`}
+                >
+                  <Text
+                    type="caption"
+                    sx={{
+                      "&:hover": {
+                        color: themeData.background.button,
+                      },
+                    }}
+                  >
+                    {item.eyebrow
+                      .toLowerCase()
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Text>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="container mx-auto px-4 mt-10 border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between text-sm text-gray-400">
-        <p>© {new Date().getFullYear()} Enews Varsani. All rights reserved.</p>
-        <div className="flex gap-4 mt-2 md:mt-0 flex-wrap">
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/disclaimer">Disclaimer</Link>
-          <Link href="/terms-and-conditions">Terms & Conditions</Link>
+        {/* Bottom */}
+        <div
+          className="mt-20 flex flex-col gap-4 border-t pt-8 md:flex-row md:items-center md:justify-between"
+          style={{
+            borderColor: themeData?.text?.border,
+          }}
+        >
+          <Text
+            type="caption"
+            sx={{
+              color: themeData?.text?.secondary,
+            }}
+          >
+            © {new Date().getFullYear()} StillWriting. Crafted by
+            Ranjani Varsani.
+          </Text>
+
+          <div className="flex items-center gap-6">
+            <Link href="/privacy-policy">
+              <Text
+                type="caption"
+                component="span"
+                sx={{
+                  color: themeData?.text?.secondary,
+                  "&:hover": {
+                    color: themeData?.background?.button,
+                  },
+                }}
+              >
+                Privacy
+              </Text>
+            </Link>
+
+            <Link href="/terms-and-conditions">
+              <Text
+                type="caption"
+                component="span"
+                sx={{
+                  color: themeData?.text?.secondary,
+                  "&:hover": {
+                    color: themeData?.background?.button,
+                  },
+                }}
+              >
+                Terms
+              </Text>
+            </Link>
+
+          </div>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
