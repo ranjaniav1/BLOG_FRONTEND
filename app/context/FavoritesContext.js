@@ -1,3 +1,4 @@
+"use client"
 import { createContext, useContext, useState, useEffect } from "react";
 import { getFavorites } from "../service/favs";
 
