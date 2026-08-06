@@ -10,6 +10,7 @@ import CustomPagination from "../shared/CustomPagination";
 import { useArticleLikes } from "@/app/hooks/useArticleLikes";
 import { useThemeContext } from "@/app/context/ThemeContext";
 import { CategorySkeleton } from "./Skeleton";
+import ArticleCard from "../shared/ArticleCard";
 
 const FavoritesPage = () => {
   const { favorites, loading, removeFromFavorites } = useArticleLikes(); // Custom hook managing all favorite logic
