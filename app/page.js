@@ -7,7 +7,7 @@ import HeroSection from "./components/sections/HeroSection";
 import FeaturedArticles from "./components/sections/FeaturedArtices";
 import { getHome } from "./service/home";
 import QuoteSection from "./components/sections/QuoteSection";
-import CategoriesSection from "./components/sections/CategoriesSection";
+// import CategoriesSection from "./components/sections/CategoriesSection";
 import ArticleSection from "./components/sections/ArticleSection";
 
 
@@ -37,7 +37,7 @@ export default function Home() {
 
         <meta
           name="description"
-          content="Essays about life, self-growth, happiness, books, relationships, and everything I'm still learning."
+                    content="A personal space where I write about software, learning, building, self-reflection, and life."
         />
       </Head>
 
@@ -45,14 +45,14 @@ export default function Home() {
         <HeroSection hero={homeData?.hero} loading={loading}/>
 
         <FeaturedArticles
-          featured={homeData?.featured} loading={loading}
+          series={homeData?.featuredSeries} loading={loading}
         />
 
         <ArticleSection
-          articles={homeData?.articles} loading={loading}
+          articles={homeData?.latestArticles} loading={loading}
         />
         <QuoteSection />
-        <CategoriesSection category={homeData?.categories} />
+        {/* <CategoriesSection category={homeData?.personalWriting} /> */}
       </>
 
     </>
