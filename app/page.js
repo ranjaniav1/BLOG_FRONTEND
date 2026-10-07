@@ -45,7 +45,7 @@ export default function Home() {
         <HeroSection hero={homeData?.hero} loading={loading}/>
 
         <FeaturedArticles
-          series={homeData?.featuredSeries} loading={loading}
+          articles={homeData?.featuredArticles ??[]} loading={loading}
         />
 
         <ArticleSection

@@ -4,89 +4,37 @@ import React from "react";
 import Link from "next/link";
 import Text from "../shared/Text";
 import { FeaturedSkeleton } from "../features/Skeleton";
+import SectionHeading from "../shared/SectionHeading";
+import { Container } from "@mui/material";
+import ArticleCard from "../shared/ArticleCard";
 
-const FeaturedArticles = ({ series, loading }) => {
+const FeaturedArticles = ({ articles = [], loading }) => {
   if (loading) {
     return <FeaturedSkeleton />;
   }
 
-  if (!series) {
+  if (!articles.length) {
     return null;
   }
 
   return (
-    <section
-      aria-labelledby="featured-series"
-      className="pt-16 pb-20 sm:pt-24"
-    >
-      <Text type="heroLabel">
-        Featured series
-      </Text>
+    <Container maxWidth="xl" disableGutters className="mt-5">
+      <SectionHeading
+        eyebrow="Featured articles"
+        title="Stories worth reading"
+        to="/articles"
+        linkLabel="All articles"
+      />
 
-      <Text type="sectionTitle" mt={2}>
-        Learn from the ground up
-      </Text>
 
-      <div className="mt-10">
-        <Link
-          href={`/series/${series.slug}`}
-          className="group block"
-        >
-          <div className="grid overflow-hidden rounded-[2rem] bg-neutral-100 lg:grid-cols-2">
 
-            {/* Image */}
-            <div className="overflow-hidden">
-              <img
-                src={series?.thumbnail}
-                alt={series?.name || "Featured series"}
-                className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              />
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-14">
-
-              <Text type="heroLabel">
-                Web Development
-              </Text>
-
-              <Text
-                type="cardTitle"
-                mt={2}
-                maxWidth="100%"
-              >
-                {series?.name}
-              </Text>
-
-              <Text
-                type="bodyLarge"
-                mt={4}
-                maxWidth="100%"
-              >
-                {series?.description}
-              </Text>
-
-              <div className="mt-6 flex items-center gap-4 text-sm text-neutral-500">
-                <span>
-                  {series.totalLessons || 0} Lessons
-                </span>
-
-                <span>•</span>
-
-                <span>
-                  {series.articlesCount || 0} Articles
-                </span>
-              </div>
-
-              <div className="mt-8 font-medium">
-                Start learning →
-              </div>
-
-            </div>
-          </div>
-        </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+        {articles.map((article) => (
+          <ArticleCard article={article} variant="editorial" key={article._id} />
+                   
+        ))}
       </div>
-    </section>
+    </Container>
   );
 };
 
