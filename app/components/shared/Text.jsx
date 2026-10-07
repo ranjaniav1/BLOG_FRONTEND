@@ -131,7 +131,7 @@ const Text = ({
       fontWeight: 400,
       lineHeight: 1.5,
       letterSpacing: "0",
-      color: themeData?.text?.header,
+      color: themeData?.text?.heading,
     },
   };
 

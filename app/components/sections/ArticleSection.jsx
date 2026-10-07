@@ -15,16 +15,16 @@ const ArticleSection = ({ articles = [], loading }) => {
   return (
     <Container maxWidth="xl" disableGutters>
       <SectionHeading
-        eyebrow="latest"
-        title="Recently written"
-        to="/categories"
+        eyebrow="latest articles"
+        title="What i've been learning & writing"
+        to="/articles" 
         linkLabel="All articles"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
         {articles.map((article) => (
-          <Link key={article._id} href={`/blog/${article.slug}`}>
+          
             <ArticleCard article={article} variant="editorial" key={article._id} />
-          </Link>
+          
         ))}
       </div>
     </Container>

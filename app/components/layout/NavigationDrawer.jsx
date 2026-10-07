@@ -31,7 +31,7 @@ const NavigationDrawer = ({
           type="header"
           component="h2"
           sx={{
-            color: themeData?.text?.header,
+            color: themeData?.text?.heading,
           }}
         >
           Menu
@@ -64,7 +64,7 @@ const NavigationDrawer = ({
                 component="span"
                 sx={{
                   color: isActive
-                    ? themeData?.text?.header
+                    ? themeData?.text?.heading
                     : themeData?.text?.body,
                   fontWeight: isActive ? 600 : 400,
                 }}

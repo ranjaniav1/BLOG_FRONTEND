@@ -21,8 +21,8 @@ const CategoriesSection = ({ category = [] }) => {
                         href={`/categories/${cat.slug}`}
                         style={{
                             borderColor: themeData?.text?.border,
-                            color: themeData?.text?.primary,
-                            background: themeData?.text?.button,
+                            color: themeData?.text?.button,
+                            background: themeData?.background?.button,
                         }}
                         className="
     inline-flex items-center

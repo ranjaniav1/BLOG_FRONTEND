@@ -45,15 +45,15 @@ export default function HeroSection({ hero, loading }) {
             flexWrap: "wrap",
           }}
         >
-          <Link href="/articles" passHref>
+          <Link href="/series" passHref>
             <Button type="primary">
-              Start Reading
+              Explore Series
             </Button>
           </Link>
 
-          <Link href="/categories" passHref>
+          <Link href="/articles" passHref>
             <Button type="secondary">
-              Browse Categories
+              Read Articles
             </Button>
           </Link>
         </Box>

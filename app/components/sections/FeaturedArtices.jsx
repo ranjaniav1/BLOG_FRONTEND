@@ -16,13 +16,13 @@ const FeaturedArticles = ({ featured, loading }) => {
   return (
     <section aria-labelledby="featured" className="pt-16 pb-20  sm:pt-24" >
       <Text type="heroLabel">
-        Featured story
+        Featured series
       </Text>
       <Text
         type="sectionTitle"
         mt={2}
       >
-        The one I'd hand you first
+        Learn from the ground up
       </Text>
 
       <div className="mt-10">

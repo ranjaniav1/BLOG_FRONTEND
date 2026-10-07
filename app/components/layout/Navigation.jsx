@@ -102,7 +102,7 @@ const Navigation = () => {
                 sx={{
                   color:
                     activeTab === tab.href
-                      ? themeData?.text?.header
+                      ? themeData?.text?.heading
                       : themeData?.background?.button
                 }}
               >

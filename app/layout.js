@@ -24,11 +24,48 @@ const fraunces = Fraunces({
 
 export const metadata = {
   title: {
-    default: "Still Writing | Philosophy, Self-Reflection & Life Lessons",
+    default: "Still Writing | Software, Learning & Life",
     template: "%s | Still Writing",
   },
   description:
-    "Explore thoughtful essays on philosophy, self-reflection, psychology, mindfulness, relationships, and personal growth.",
+    "Still writing is Ranjani Varsani's personal blog about software development, learning, building, self-reflection, and life.",
+  keywords: [
+    "Ranjani Varsani",
+    "software development",
+    "web development",
+    "programming",
+    "learning",
+    "technology",
+    "self-reflection",
+    "life lessons",
+  ],
+  authors: [{
+    name: "Ranjani Varsani", url: "https://ranjanivarsani.com"
+  }],
+  creator: "Ranjani Varsani",
+  metadataBase: new URL("https://blog.ranjanivarsani.com"),
+
+  openGraph: {
+    title: "Still Writing | Software, Learning & Life",
+    description:
+      "Notes on software, learning, building, self-reflection, and life by Ranjani Varsani.",
+    url: "https://blog.ranjanivarsani.com",
+    siteName: "Still Writing",
+    type: "website",
+    locale: "en_US",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Still Writing | Software, Learning & Life",
+    description:
+      "Notes on software, learning, building, self-reflection, and life by Ranjani Varsani.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
