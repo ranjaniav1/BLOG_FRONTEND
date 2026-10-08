@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { getArticleBasedonCategory } from "../service/collectionOfArticle";
 import { createComments, getComments } from "../service/comments";
-import { getAllSeries, getHome, getLessonBySlug, getLessonsBySeries } from "../service/home";
+import {  getHome } from "../service/home";
 import { getSearch } from "../service/search";
 import { getSettings } from "../service/settings";
 import { getSingleArticle } from "../service/singleArticle";
@@ -71,35 +71,6 @@ export const useComments = (article) => {
     return { comments, loading, postComment, refetch };
 };
 
-export const useSeries = () =>
-    useFetch({
-        fetchFn: getAllSeries,
-        transform: (res) => res || [],
-    });
 
-export const useLessons = (seriesId) => {
-    // Only create memo when seriesId actually changes
-    const memoizedSeriesId = useMemo(() => seriesId, [seriesId]);
-    
-    return useFetch({
-        fetchFn: getLessonsBySeries,
-        params: memoizedSeriesId,
-        enabled: !!seriesId,
-        transform: (res) => res || [], 
-    });
-};
 
-export const useLessonContent = (seriesSlug, lessonSlug) => {
-    // Memoize both params together
-    const memoizedParams = useMemo(
-        () => ({ seriesSlug, lessonSlug }),
-        [seriesSlug, lessonSlug]
-    );
-    
-    return useFetch({
-        fetchFn: getLessonBySlug,
-        params: memoizedParams,
-        enabled: !!seriesSlug && !!lessonSlug,
-        transform: (res) => res || null, 
-    });
-};
+
