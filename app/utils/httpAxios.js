@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const httpAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -12,6 +13,14 @@ export const httpAxiosForHome = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+});
+
+httpAxios.interceptors.request.use((config) => {
+  const accessToken = Cookies.get("accessToken");
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return config;
 });
 
 // Interceptor to handle 401 errors and refresh the token

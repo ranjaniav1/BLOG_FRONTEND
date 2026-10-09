@@ -47,7 +47,11 @@ export const signUpWithEmail = async (userData) => {
       },
     });
     const user = response.data?.data?.user;
+    const accessToken = response.data?.data?.accessToken;
     Cookies.set("user", encodeURIComponent(JSON.stringify(user)));
+    if (accessToken) {
+      Cookies.set("accessToken", accessToken);
+    }
     toast.success("Signup successful 🎉");
     return user;
   } catch (error) {
