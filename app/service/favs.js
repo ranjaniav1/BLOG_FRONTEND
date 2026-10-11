@@ -2,12 +2,8 @@ import { httpAxios } from "../utils/httpAxios";
 
 // Get all favorites for the logged-in user
 export const getFavorites = async () => {
-  try {
-    const response = await httpAxios.get("/favorites");
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching favorites:", error);
-  }
+  const response = await httpAxios.get("/favorites");
+  return response.data;
 };
 
 // Add an article to favorites

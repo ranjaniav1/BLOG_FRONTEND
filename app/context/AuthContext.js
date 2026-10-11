@@ -7,6 +7,7 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     const userCookie = Cookies.get("user");
@@ -17,11 +18,12 @@ export const AuthProvider = ({ children }) => {
         console.error("Invalid user cookie:", error);
       }
     }
+    setAuthLoading(false);
   }, []);
 
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, authLoading }}>
       {children}
     </AuthContext.Provider>
   );
