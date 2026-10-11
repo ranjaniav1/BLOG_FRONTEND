@@ -69,7 +69,7 @@ export default function Footer() {
                       type="caption"
                       sx={{
                         "&:hover": {
-                          color: themeData.background.button,
+                          color: themeData?.background?.button,
                         },
                       }}
                     >
