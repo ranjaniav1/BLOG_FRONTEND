@@ -12,6 +12,8 @@ const ArticleSection = ({ articles = [], loading }) => {
     return <ArticleSectionSkeleton />;
   }
 
+  const articleList = Array.isArray(articles) ? articles : [];
+
   return (
     <Container maxWidth="xl" disableGutters>
       <SectionHeading
@@ -21,7 +23,7 @@ const ArticleSection = ({ articles = [], loading }) => {
         linkLabel="All articles"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-        {articles.map((article) => (
+        {articleList.map((article) => (
           
             <ArticleCard article={article} variant="editorial" key={article._id} />
           
