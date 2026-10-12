@@ -176,23 +176,7 @@ export const HeroSkeleton = () => {
   );
 };
 
-export const FeaturedSkeleton = () => {
-  return (
-    <section className="pt-16 pb-20">
-      <Skeleton width={120} height={20} />
 
-      <Skeleton
-        width={260}
-        height={48}
-        sx={{ mt: 2 }}
-      />
-
-      <div className="mt-10">
-        <ArticleCardSkeleton />
-      </div>
-    </section>
-  );
-};
 
 
 export const ArticleDetailSkeleton = () => {
